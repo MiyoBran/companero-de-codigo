@@ -1,21 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instructivo: Empezando con IA para Codificación - Por [Tu Nombre]</title>
+    <title>Instructivo: Empezando con IA - Por Miyo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        .card { background-color: white; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); padding: 1.5rem; margin-bottom: 1.5rem; }
-        .code-block { background-color: #2d2d2d; color: #f8f8f2; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', Courier, monospace; overflow-x: auto; }
-        .code-block .comment { color: #75715e; }
-        .code-block .keyword { color: #f92672; }
-        .code-block .function { color: #a6e22e; }
-        .code-block .string { color: #e6db74; }
+
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .code-block .comment {
+            color: #75715e;
+        }
+
+        .code-block .keyword {
+            color: #f92672;
+        }
+
+        .code-block .function {
+            color: #a6e22e;
+        }
+
+        .code-block .string {
+            color: #e6db74;
+        }
     </style>
 </head>
+
 <body class="bg-slate-50 text-slate-800">
 
     <header class="bg-gradient-to-r from-[#4ECDC4] to-[#56B4D3] text-white p-6 shadow-lg sticky top-0 z-50">
@@ -27,21 +59,31 @@
 
     <main class="container mx-auto p-6 pt-12 max-w-4xl">
 
-        <a href="index.html" class="inline-block mb-8 text-[#FF6B6B] font-semibold hover:underline">&larr; Volver a la Infografía Principal</a>
+        <a href="index.html" class="inline-block mb-8 text-[#FF6B6B] font-semibold hover:underline">&larr; Volver a la
+            Infografía Principal</a>
 
         <section id="intro" class="mb-12">
             <h2 class="text-2xl md:text-3xl font-bold mb-4 text-slate-800">Introducción: Tu Primer Asistente de IA</h2>
-            <p class="text-slate-600 leading-relaxed">Usar un asistente de IA como GitHub Copilot puede parecer complicado, pero en realidad es muy sencillo de configurar. Estas herramientas no escriben el código por ti, sino que actúan como un "compañero de programación" extremadamente rápido que te sugiere código, te ayuda a explorar soluciones y acelera las tareas repetitivas. Esta guía te mostrará cómo empezar usando la combinación más popular: Visual Studio Code y GitHub Copilot.</p>
+            <p class="text-slate-600 leading-relaxed">Usar un asistente de IA como GitHub Copilot puede parecer
+                complicado, pero en realidad es muy sencillo de configurar. Estas herramientas no escriben el código por
+                ti, sino que actúan como un "compañero de programación" extremadamente rápido que te sugiere código, te
+                ayuda a explorar soluciones y acelera las tareas repetitivas. Esta guía te mostrará cómo empezar usando
+                la combinación más popular: Visual Studio Code y GitHub Copilot.</p>
         </section>
 
         <section id="pasos" class="space-y-8">
             <div class="card">
-                <h3 class="text-xl font-bold mb-3 text-[#FF6B6B]">Paso 1: Obtener GitHub Copilot (Gratis para Estudiantes)</h3>
-                <p class="text-slate-600 mb-4">Como estudiante, tienes acceso gratuito a herramientas profesionales a través del GitHub Student Developer Pack. ¡Aprovéchalo!</p>
+                <h3 class="text-xl font-bold mb-3 text-[#FF6B6B]">Paso 1: Obtener GitHub Copilot (Gratis para
+                    Estudiantes)</h3>
+                <p class="text-slate-600 mb-4">Como estudiante, tienes acceso gratuito a herramientas profesionales a
+                    través del GitHub Student Developer Pack. ¡Aprovéchalo!</p>
                 <ol class="list-decimal list-inside space-y-2 text-slate-700">
                     <li>Asegúrate de tener una cuenta de GitHub.</li>
-                    <li>Ve a <a href="https://education.github.com/pack" target="_blank" rel="noopener" class="text-blue-600 hover:underline">education.github.com/pack</a> y haz clic en "Sign up for Student Developer Pack".</li>
-                    <li>Sigue los pasos para verificar tu estatus de estudiante. Puede que necesites tu correo institucional (@edu) o alguna otra prueba como un certificado de alumno regular.</li>
+                    <li>Ve a <a href="https://education.github.com/pack" target="_blank" rel="noopener"
+                            class="text-blue-600 hover:underline">education.github.com/pack</a> y haz clic en "Sign up
+                        for Student Developer Pack".</li>
+                    <li>Sigue los pasos para verificar tu estatus de estudiante. Puede que necesites tu correo
+                        institucional (@edu) o alguna otra prueba como un certificado de alumno regular.</li>
                     <li>Una vez aprobado, tu cuenta de GitHub tendrá acceso a Copilot Pro sin costo.</li>
                 </ol>
             </div>
@@ -51,39 +93,47 @@
                 <p class="text-slate-600 mb-4">Ahora, conectaremos Copilot con tu editor de código.</p>
                 <ol class="list-decimal list-inside space-y-2 text-slate-700">
                     <li>Abre Visual Studio Code.</li>
-                    <li>Ve a la pestaña de **Extensiones** en la barra lateral izquierda (el ícono de los cuadrados).</li>
+                    <li>Ve a la pestaña de **Extensiones** en la barra lateral izquierda (el ícono de los cuadrados).
+                    </li>
                     <li>En la barra de búsqueda, escribe `GitHub Copilot` y busca la extensión oficial de GitHub.</li>
                     <li>Haz clic en el botón azul **"Instalar"**.</li>
                 </ol>
             </div>
-            
+
             <div class="card">
                 <h3 class="text-xl font-bold mb-3 text-[#FFD700]">Paso 3: Usando Copilot por Primera Vez</h3>
-                <p class="text-slate-600 mb-4">Una vez instalado, VS Code te pedirá que inicies sesión con tu cuenta de GitHub para activar la extensión. ¡Ahora estás listo para ver la magia!</p>
+                <p class="text-slate-600 mb-4">Una vez instalado, VS Code te pedirá que inicies sesión con tu cuenta de
+                    GitHub para activar la extensión. ¡Ahora estás listo para ver la magia!</p>
                 <h4 class="font-semibold text-slate-700 mb-2">Ejemplo 1: Comentarios que se convierten en código</h4>
-                <p class="text-slate-600 mb-2">Abre un archivo (ej. `script.js` o `main.py`) y escribe un comentario describiendo lo que quieres hacer. Copilot te sugerirá el código.</p>
+                <p class="text-slate-600 mb-2">Abre un archivo (ej. `script.js` o `main.py`) y escribe un comentario
+                    describiendo lo que quieres hacer. Copilot te sugerirá el código.</p>
                 <div class="code-block">
                     <span class="comment">// function to calculate the factorial of a number</span>
                     <br>
-                    <span class="keyword">function</span> <span class="function">factorial</span>(n) { <span class="comment">// <- Esto será sugerido por Copilot</span>
-                    <br>
-                    &nbsp;&nbsp;<span class="keyword">if</span> (n === 0 || n === 1) {
-                    <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> 1;
-                    <br>
-                    &nbsp;&nbsp;} <span class="keyword">else</span> {
-                    <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> n * <span class="function">factorial</span>(n - 1);
-                    <br>
-                    &nbsp;&nbsp;}
-                    <br>
-                    }
+                    <span class="keyword">function</span> <span class="function">factorial</span>(n) { <span
+                        class="comment">// <- Esto será sugerido por Copilot</span>
+                            <br>
+                            &nbsp;&nbsp;<span class="keyword">if</span> (n === 0 || n === 1) {
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> 1;
+                            <br>
+                            &nbsp;&nbsp;} <span class="keyword">else</span> {
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> n * <span
+                                class="function">factorial</span>(n - 1);
+                            <br>
+                            &nbsp;&nbsp;}
+                            <br>
+                            }
                 </div>
                 <p class="text-slate-600 mt-4 mb-2">Presiona `Tab` para aceptar la sugerencia.</p>
 
                 <h4 class="font-semibold text-slate-700 mt-6 mb-2">Ejemplo 2: Usar Copilot Chat</h4>
-                <p class="text-slate-600 mb-2">Abre la vista de Chat de Copilot (usualmente un ícono en la barra lateral). Puedes pedirle cosas en lenguaje natural.</p>
-                <p class="italic text-slate-500 p-3 bg-slate-100 rounded-md">"Explícame este fragmento de código" (y pegas el código) <br> "Sugiere cómo puedo refactorizar esta función para que sea más eficiente" <br> "Genérame un test unitario para la función factorial"</p>
+                <p class="text-slate-600 mb-2">Abre la vista de Chat de Copilot (usualmente un ícono en la barra
+                    lateral). Puedes pedirle cosas en lenguaje natural.</p>
+                <p class="italic text-slate-500 p-3 bg-slate-100 rounded-md">"Explícame este fragmento de código" (y
+                    pegas el código) <br> "Sugiere cómo puedo refactorizar esta función para que sea más eficiente" <br>
+                    "Genérame un test unitario para la función factorial"</p>
             </div>
         </section>
 
@@ -93,4 +143,5 @@
 
     </main>
 </body>
+
 </html>

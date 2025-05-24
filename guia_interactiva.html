@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guía Interactiva de Prompt Engineering para Estudiantes</title>
+    <title>Guía Prompt Engineering para Estudiantes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -294,6 +294,9 @@
     </header>
 
     <main class="container mx-auto px-4 py-8">
+
+        <a href="index.html" class="inline-block mb-8 text-[#FF6B6B] font-semibold hover:underline">&larr; Volver a la
+            Infografía Principal</a>
 
         <section id="intro-spa" class="card text-center mb-12">
             <h2 class="section-title">Bienvenido a tu Guía Interactiva</h2>
@@ -844,22 +847,22 @@ Incluye mi disponibilidad, preferencias (visual, práctico), y técnicas como re
             <p class="text-gray-700 mb-4">Comprender tus preferencias (Visual, Auditivo, Lecto-escritor, Kinestésico)
                 puede ayudarte a adaptar tus estudios. La IA puede guiarte en este proceso.</p>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                <div id="vark-visual" class="vark-card" onclick="selectVARK('visual')">
+                <button id="vark-visual" type="button" class="vark-card" onclick="selectVARK('visual')">
                     <div class="vark-icon">👁️</div>
                     <h4 class="font-semibold">Visual</h4>
-                </div>
-                <div id="vark-auditory" class="vark-card" onclick="selectVARK('auditory')">
+                </button>
+                <button id="vark-auditory" type="button" class="vark-card" onclick="selectVARK('auditory')">
                     <div class="vark-icon">👂</div>
                     <h4 class="font-semibold">Auditivo</h4>
-                </div>
-                <div id="vark-readwrite" class="vark-card" onclick="selectVARK('readwrite')">
+                </button>
+                <button id="vark-readwrite" type="button" class="vark-card" onclick="selectVARK('readwrite')">
                     <div class="vark-icon">✍️</div>
                     <h4 class="font-semibold">Lecto-escritor</h4>
-                </div>
-                <div id="vark-kinesthetic" class="vark-card" onclick="selectVARK('kinesthetic')">
+                </button>
+                <button id="vark-kinesthetic" type="button" class="vark-card" onclick="selectVARK('kinesthetic')">
                     <div class="vark-icon">🖐️</div>
                     <h4 class="font-semibold">Kinestésico</h4>
-                </div>
+                </button>
             </div>
             <div id="vark-info" class="p-4 bg-gray-50 rounded-lg min-h-[150px]">
                 <p class="text-gray-600">Selecciona un estilo para ver cómo la IA puede ayudarte.</p>
@@ -938,7 +941,7 @@ Finalmente, sugiéreme 3-4 técnicas de estudio o recursos específicos para mis
     <footer class="text-center p-6 text-slate-500 text-sm mt-12">
         <p><a href="index.html" class="hover:underline">Volver a la Infografía Principal</a></p>
         <p>&copy; 2025 Guía Interactiva de Prompt Engineering. Basada en el "Informe de Investigación: Creación de un
-            Asistente de Prompts y Estrategias para Estudiantes".</p>
+            Asistente de Prompts y Estrategias para Estudiantes" - Miyo.</p>
     </footer>
 
 
