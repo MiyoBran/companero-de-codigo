@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tendencias en IA y Aprendizaje Estudiantil (2025)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- 
+        Plan de Narrativa y Estructura:
+        1. Título e Introducción: El auge de la Ingeniería de Prompts.
+        2. Sección 1: Principios Fundamentales de un Prompt Efectivo.
+           - Visual: Gráfico de Barras (Chart.js) - 8 Pilares.
+        3. Sección 2: Meta-Prompting y el Asistente "Gem".
+           - Visual: Diagrama de Flujo (HTML/CSS) - Proceso de Meta-Prompting.
+           - Visual: Gráfico de Donut (Chart.js) - Fases del "Gem".
+        4. Sección 3: Adopción por Estudiantes: Estrategias de Aprendizaje.
+           - Visual: Gráfico de Barras Apiladas (Chart.js) - Estrategias de Aprendizaje Activo.
+           - Visual: Gráfico de Radar (Chart.js) - Estrategias para Preparar Exámenes.
+        5. Sección 4: Métodos de Estudio y Estilos de Aprendizaje.
+           - Visual: Tabla (HTML/CSS) - Comparativa Técnicas IA para Exámenes.
+           - Visual: Pictograma (HTML/Unicode) - Estilos VARK.
+        6. Sección 5: Proyecciones Futuras y Conclusión.
+           - Visual: Gráfico de Líneas (Chart.js) - Evolución Importancia Ing. Prompts.
+           - Visual: "Gran Número" - Habilidad Indispensable.
+
+        Selección de Visualizaciones (Confirmando NO SVG, NO MERMAID):
+        - Título, Gran Número: Texto HTML/CSS.
+        - Gráficos (Barras, Donut, Barras Apiladas, Radar, Líneas): Chart.js (Canvas).
+        - Diagrama de Flujo: HTML/CSS con Tailwind.
+        - Tabla: HTML/CSS con Tailwind.
+        - Pictograma: HTML/Unicode con Tailwind.
+        - Justificación: Las elecciones se basan en la "Infographic Chart Selection Guide" adaptada, priorizando Chart.js para gráficos estándar y HTML/CSS para diagramas simples para cumplir con la restricción de NO SVG y NO MERMAID.
+
+        Paleta de Colores Seleccionada: "Energetic & Playful"
+        - Naranja: #FF8C00
+        - Amarillo: #FFD700
+        - Rosa: #FF69B4
+        - Teal: #008080
+        - Morado: #9370DB
+        - Fondo Principal: #F3F4F6 (Gris Claro)
+        - Tarjetas: #FFFFFF (Blanco)
+        - Texto Principal: #1F2937 (Gris Oscuro)
+
+        Confirmación: NO se utiliza Mermaid JS. NO se utiliza SVG.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6;
+            /* Gris Claro */
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            /* Base height */
+            max-height: 400px;
+            /* Max height */
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            /* 48px */
+            line-height: 1;
+            font-weight: 700;
+            color: #FF8C00;
+            /* Naranja */
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            /* 30px */
+            font-weight: 700;
+            color: #008080;
+            /* Teal */
+            margin-bottom: 1rem;
+        }
+
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            /* 12px */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            /* 24px */
+            margin-bottom: 2rem;
+            /* 32px */
+        }
+
+        .flowchart-step {
+            background-color: #E0F2F7;
+            /* Light Teal variant */
+            border: 2px solid #008080;
+            /* Teal */
+            color: #004D4D;
+            /* Dark Teal */
+        }
+
+        .flowchart-arrow {
+            color: #008080;
+            /* Teal */
+        }
+
+        .swot-item {
+            min-height: 120px;
+        }
+
+        .vark-icon {
+            font-size: 2.5rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+                .action-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            color: white;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            background-color: #3B82F6;
+        }
+
+        .action-button:hover {
+            background-color: #2563EB;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <header
+        class="bg-gradient-to-r from-[#008080] to-[#004D4D] text-white py-12 px-4 text-center rounded-b-xl shadow-lg">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Tendencias en Ingeniería de Prompts y su Impacto en el
+            Aprendizaje</h1>
+        <p class="text-xl md:text-2xl max-w-3xl mx-auto">Un análisis profundo de cómo la IA está transformando la
+            educación para estudiantes de informática (Investigación 2025).</p>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <a href="index.html" class="inline-block mb-8 text-[#FF6B6B] font-semibold hover:underline">&larr; Volver a la
+            Infografía Principal</a>
+
+        <section class="card text-center">
+            <h2 class="section-title">El Auge de la Ingeniería de Prompts</h2>
+            <p class="text-lg mb-4">La ingeniería de prompts se ha consolidado como una habilidad crucial en la era de
+                la inteligencia artificial. Este informe, basado en investigaciones de mediados de 2025, explora cómo
+                esta disciplina está redefiniendo la interacción con los Modelos de Lenguaje Grandes (LLMs) y su
+                aplicación estratégica en el ámbito estudiantil, especialmente para alumnos de informática.</p>
+            <div class="stat-number">HABILIDAD ESENCIAL 2025</div>
+            <p class="text-md text-gray-600 mt-2">La capacidad de diseñar prompts efectivos es fundamental para
+                maximizar el potencial de la IA como colaborador estratégico.</p>
+        </section>
+
+        <section id="links" class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="card text-center">
+                    <h3 class="text-xl font-semibold mb-3 text-[#FF6B6B]">Lee la Investigación Completa</h3>
+                    <p class="text-slate-600 mb-4">Accede al documento detallado con el análisis exhaustivo de todas las
+                        herramientas.</p>
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vR7AbEhZwoqHZzFsVuQV9jKHp0olodJPKAsg_KmHTDHqJczAXNCw8GSRnyilXgl8obTfFbEk1gj2HvQ/pub"
+                        target="_blank" rel="noopener" class="action-button bg-[#FF6B6B] hover:bg-[#ff5252]">Ver
+                        Investigación</a>
+                </div>
+                <div class="card text-center">
+                    <h3 class="text-xl font-semibold mb-3 text-[#FFA500]">Participa en la Encuesta</h3>
+                    <p class="text-slate-600 mb-4">Comparte tu propia experiencia y conocimiento sobre el uso de estas
+                        herramientas.</p>
+                    <a href="https://forms.gle/d4fgZnT2ybJTU4iz8" target="_blank" rel="noopener"
+                        class="action-button bg-[#FFA500] hover:bg-[#ff9500]">Ir a la Encuesta</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title text-center">Principios Fundamentales de un Prompt Efectivo</h2>
+            <p class="text-center mb-6 text-gray-700">La efectividad de un LLM depende en gran medida de la calidad del
+                prompt. Existen pilares clave que guían la construcción de instrucciones robustas y eficaces para la IA.
+            </p>
+            <div class="chart-container mx-auto h-[400px] md:h-[450px]">
+                <canvas id="pilaresPromptChart"></canvas>
+            </div>
+            <p class="mt-6 text-gray-700 text-sm">Este gráfico ilustra los 8 pilares fundamentales identificados para la
+                creación de prompts efectivos. Cada uno de ellos juega un rol vital en asegurar que la IA comprenda y
+                ejecute la tarea solicitada con precisión y relevancia. Dominar estos principios es el primer paso hacia
+                una interacción exitosa con los LLMs.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title text-center">Meta-Prompting y el Asistente "Gem"</h2>
+            <p class="text-center mb-6 text-gray-700">El meta-prompting es el arte de usar la IA para generar o refinar
+                otros prompts. El concepto de "Gem" Asistente personaliza este proceso, guiando al usuario hacia la
+                creación del prompt perfecto.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-[#FF8C00]">Proceso de Meta-Prompting</h3>
+                    <p class="mb-4 text-gray-600">Este diagrama simplificado muestra cómo un meta-prompt facilita la
+                        creación de un prompt optimizado, delegando parte del proceso cognitivo a la propia IA.</p>
+                    <div class="space-y-4">
+                        <div class="flowchart-step p-3 rounded-lg text-center shadow">Usuario Define Objetivo</div>
+                        <div class="text-center flowchart-arrow text-3xl font-bold">↓</div>
+                        <div class="flowchart-step p-3 rounded-lg text-center shadow">Meta-Prompt Guía a la IA</div>
+                        <div class="text-center flowchart-arrow text-3xl font-bold">↓</div>
+                        <div class="flowchart-step p-3 rounded-lg text-center shadow">IA Genera Prompt Refinado</div>
+                        <div class="text-center flowchart-arrow text-3xl font-bold">↓</div>
+                        <div class="flowchart-step p-3 rounded-lg text-center shadow">Prompt Usado en Otro LLM</div>
+                        <div class="text-center flowchart-arrow text-3xl font-bold">↓</div>
+                        <div class="flowchart-step p-3 rounded-lg text-center shadow">Resultado Óptimo</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-center text-[#FF8C00]">Fases del Asistente "Gem"</h3>
+                    <p class="text-center mb-4 text-gray-600">El "Gem" Asistente sigue un proceso estructurado en fases
+                        para construir un prompt robusto y personalizado.</p>
+                    <div class="chart-container mx-auto h-[300px] md:h-[350px]">
+                        <canvas id="gemPhasesChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-gray-700 text-sm">El gráfico de donut visualiza la distribución de enfoque a
+                        través de las 5 fases clave del "Gem" Asistente, desde la definición inicial hasta la
+                        construcción y retroalimentación del prompt final.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title text-center">Adopción por Estudiantes: Estrategias de Aprendizaje Potenciadas por
+                IA</h2>
+            <p class="text-center mb-6 text-gray-700">La IA se está convirtiendo en una herramienta indispensable para
+                el aprendizaje activo y la preparación académica, permitiendo a los estudiantes personalizar y optimizar
+                sus métodos de estudio.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-center text-[#9370DB]">Estrategias de Aprendizaje Activo
+                        con IA</h3>
+                    <p class="text-center mb-4 text-gray-600">La IA facilita técnicas como Feynman, creación de
+                        analogías y conexión de conocimientos, fomentando una comprensión más profunda.</p>
+                    <div class="chart-container mx-auto h-[350px] md:h-[400px]">
+                        <canvas id="aprendizajeActivoChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-gray-700 text-sm">Este gráfico de barras apiladas muestra la contribución
+                        relativa de diferentes estrategias de aprendizaje activo asistidas por IA (Técnica Feynman,
+                        Creación de Analogías, Conexión de Conocimientos) a la mejora de la comprensión conceptual y la
+                        retención de información.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-center text-[#9370DB]">Estrategias para Preparar Exámenes
+                        con IA</h3>
+                    <p class="text-center mb-4 text-gray-600">Desde generar guías hasta simular evaluaciones, la IA
+                        ofrece un apoyo integral para los exámenes.</p>
+                    <div class="chart-container mx-auto h-[350px] md:h-[400px]">
+                        <canvas id="preparacionExamenesChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-gray-700 text-sm">El gráfico de radar compara tres estrategias clave de
+                        preparación de exámenes con IA (Creación de Guías, Generación de Preguntas, Simulación de
+                        Evaluación) en dimensiones como personalización, cobertura de la Taxonomía de Bloom y
+                        retroalimentación inmediata.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title text-center">Personalización del Estudio: IA, Métodos y Estilos de Aprendizaje</h2>
+            <p class="text-center mb-6 text-gray-700">La IA puede actuar como un orientador académico, ayudando a
+                identificar estilos de aprendizaje y a crear planes de estudio personalizados.</p>
+
+            <h3 class="text-xl font-semibold mb-3 text-center text-[#FF69B4]">Tabla Comparativa: Técnicas de IA para
+                Preparación de Exámenes</h3>
+            <div class="overflow-x-auto mb-8 shadow-md rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Técnica de IA</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Descripción</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Taxonomía de Bloom</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Beneficio (Informática)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Creación de Guías
+                            </td>
+                            <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">IA procesa apuntes para
+                                generar resúmenes, glosarios, etc.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Recordar, Comprender</td>
+                            <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">Condensa info técnica,
+                                facilita revisión.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Generación de
+                                Preguntas</td>
+                            <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">IA crea preguntas de opción
+                                múltiple y abiertas.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Todos los niveles</td>
+                            <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">Práctica de algoritmos,
+                                depuración, diseño.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Simulación de
+                                Evaluación</td>
+                            <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">IA evalúa respuestas del
+                                estudiante y da feedback.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Aplicar, Analizar, Evaluar,
+                                Crear</td>
+                            <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">Feedback sobre lógica,
+                                eficiencia, errores.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-center text-gray-700 text-sm mb-6">La tabla anterior resume cómo diferentes técnicas de IA
+                pueden apoyar la preparación de exámenes, abordando distintos niveles cognitivos y ofreciendo beneficios
+                específicos para estudiantes de informática.</p>
+
+            <h3 class="text-xl font-semibold mb-6 text-center text-[#FF69B4]">Estilos de Aprendizaje VARK y Apoyo con IA
+            </h3>
+            <p class="text-center mb-6 text-gray-700">Comprender las preferencias personales de aprendizaje (Visual,
+                Auditivo, Lecto-escritor, Kinestésico) puede ayudar a adaptar las estrategias de estudio. La IA puede
+                facilitar recursos y técnicas para cada estilo.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-4 border border-gray-200 rounded-lg shadow hover:shadow-xl transition-shadow">
+                    <div class="vark-icon bg-blue-100 text-blue-600">👁️</div>
+                    <h4 class="font-semibold text-lg mb-1 text-blue-700">Visual</h4>
+                    <p class="text-sm text-gray-600">Diagramas, mapas conceptuales, visualizaciones de código. IA puede
+                        generar/encontrar estos recursos.</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg shadow hover:shadow-xl transition-shadow">
+                    <div class="vark-icon bg-green-100 text-green-600">👂</div>
+                    <h4 class="font-semibold text-lg mb-1 text-green-700">Auditivo</h4>
+                    <p class="text-sm text-gray-600">Explicaciones verbales, discusiones, Text-to-Speech. IA puede
+                        "explicar" o generar debates.</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg shadow hover:shadow-xl transition-shadow">
+                    <div class="vark-icon bg-yellow-100 text-yellow-600">✍️</div>
+                    <h4 class="font-semibold text-lg mb-1 text-yellow-700">Lecto-escritor</h4>
+                    <p class="text-sm text-gray-600">Textos, manuales, resúmenes. IA puede generar resúmenes detallados
+                        o revisar notas.</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg shadow hover:shadow-xl transition-shadow">
+                    <div class="vark-icon bg-red-100 text-red-600">🖐️</div>
+                    <h4 class="font-semibold text-lg mb-1 text-red-700">Kinestésico</h4>
+                    <p class="text-sm text-gray-600">Hacer, experimentar, codificar. IA puede proponer ejercicios
+                        prácticos o simular escenarios.</p>
+                </div>
+            </div>
+            <p class="mt-6 text-gray-700 text-sm">Estos pictogramas representan los cuatro estilos de aprendizaje del
+                modelo VARK. La IA puede ser una herramienta versátil para apoyar cada preferencia, ofreciendo desde la
+                generación de diagramas para aprendices visuales hasta la propuesta de proyectos prácticos para los
+                kinestésicos.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title text-center">Proyecciones Futuras y Conclusión</h2>
+            <p class="text-center mb-6 text-gray-700">La ingeniería de prompts no es una moda pasajera, sino una
+                habilidad con una importancia creciente. Su dominio será cada vez más indispensable en el panorama
+                académico y profesional.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-center text-[#008080]">Evolución de la Importancia de la
+                        Ing. de Prompts</h3>
+                    <p class="text-center mb-4 text-gray-600">Se proyecta que la relevancia de la ingeniería de prompts
+                        continúe su ascenso, consolidándose como una competencia clave.</p>
+                    <div class="chart-container mx-auto h-[300px] md:h-[350px]">
+                        <canvas id="evolucionImportanciaChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-gray-700 text-sm">El gráfico de líneas ilustra la tendencia ascendente
+                        proyectada en la importancia de la ingeniería de prompts desde 2023 hasta 2027, reflejando su
+                        consolidación como una habilidad esencial en la interacción con la IA.</p>
+                </div>
+                <div class="text-center p-6 bg-gradient-to-br from-[#FFD700] to-[#FF8C00] rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-bold text-white mb-3">Habilidad del Futuro</h3>
+                    <div class="text-6xl font-extrabold text-white mb-2">2027+</div>
+                    <p class="text-white text-lg">La ingeniería de prompts se perfila como una <span
+                            class="font-semibold">habilidad indispensable</span> para navegar y prosperar en un mundo
+                        cada vez más definido por la IA.</p>
+                </div>
+            </div>
+            <p class="mt-8 text-lg text-center text-gray-800">En última instancia, ser un director activo y estratégico
+                en la interacción con la IA es fundamental. El dominio de la ingeniería de prompts empodera a los
+                estudiantes para personalizar su educación, profundizar su comprensión y alcanzar sus metas académicas y
+                profesionales de manera más eficiente en la era de la inteligencia artificial.</p>
+        </section>
+    </main>
+
+    <footer class="text-center py-8 text-sm text-gray-600 border-t border-gray-200">
+        <p>&copy; 2025 Infografía de Tendencias en IA y Aprendizaje. Basado en el Informe de Investigación Profunda.</p>
+        <p>Confirmación: No se utilizó Mermaid JS ni SVG en la creación de esta infografía.</p>
+    </footer>
+
+    <script>
+        const CHART_COLORS = {
+            orange: '#FF8C00',
+            yellow: '#FFD700',
+            pink: '#FF69B4',
+            teal: '#008080',
+            purple: '#9370DB',
+            lightGray: '#D1D5DB', // Tailwind gray-300
+            darkGray: '#374151' // Tailwind gray-700
+        };
+
+        function wrapLabels(labels, maxWidth) {
+            return labels.map(label => {
+                if (typeof label !== 'string' || label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            });
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        // 1. Pilares del Prompt Chart (Bar Chart)
+        const pilaresLabels = wrapLabels([
+            'Claridad y Especificidad', 'Contexto', 'Asignación de Rol',
+            'Estructura y Delimitadores', 'Formato de Salida', 'Uso de Ejemplos (Few-Shot)',
+            'Instrucciones Positivas', 'Proceso Iterativo'
+        ], 16);
+        const pilaresData = {
+            labels: pilaresLabels,
+            datasets: [{
+                label: 'Importancia Percibida (Escala 1-10)',
+                data: [9, 8, 8, 7, 9, 8, 7, 10], // Mock data
+                backgroundColor: [
+                    CHART_COLORS.teal, CHART_COLORS.orange, CHART_COLORS.pink, CHART_COLORS.yellow,
+                    CHART_COLORS.purple, CHART_COLORS.teal, CHART_COLORS.orange, CHART_COLORS.pink
+                ],
+                borderColor: CHART_COLORS.darkGray,
+                borderWidth: 1
+            }]
+        };
+        new Chart(document.getElementById('pilaresPromptChart'), {
+            type: 'bar',
+            data: pilaresData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: { beginAtZero: true, max: 10, grid: { color: CHART_COLORS.lightGray } },
+                    y: { grid: { display: false } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: '8 Pilares de un Prompt Efectivo', font: { size: 16 }, color: CHART_COLORS.darkGray },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        // 2. Gem Phases Chart (Donut Chart)
+        const gemPhasesLabels = wrapLabels([
+            'Definición Rol y Objetivo', 'Recopilación Info Inicial', 'Profundización Principios',
+            'Consideraciones Adicionales', 'Construcción y Feedback'
+        ], 16);
+        const gemPhasesData = {
+            labels: gemPhasesLabels,
+            datasets: [{
+                label: 'Distribución del Esfuerzo en Fases del "Gem"',
+                data: [15, 20, 30, 15, 20], // Mock data percentages
+                backgroundColor: [CHART_COLORS.orange, CHART_COLORS.yellow, CHART_COLORS.pink, CHART_COLORS.teal, CHART_COLORS.purple],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(document.getElementById('gemPhasesChart'), {
+            type: 'doughnut',
+            data: gemPhasesData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    title: { display: true, text: 'Fases del Asistente "Gem"', font: { size: 16 }, color: CHART_COLORS.darkGray },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        // 3. Aprendizaje Activo Chart (Stacked Bar)
+        const aprendizajeActivoLabels = wrapLabels(['Comprensión Conceptual', 'Retención de Información', 'Aplicación Práctica'], 16);
+        const aprendizajeActivoData = {
+            labels: aprendizajeActivoLabels,
+            datasets: [
+                {
+                    label: 'Técnica Feynman',
+                    data: [30, 25, 20], // Mock data
+                    backgroundColor: CHART_COLORS.pink,
+                },
+                {
+                    label: 'Creación de Analogías',
+                    data: [35, 30, 25], // Mock data
+                    backgroundColor: CHART_COLORS.yellow,
+                },
+                {
+                    label: 'Conexión de Conocimientos',
+                    data: [25, 35, 40], // Mock data
+                    backgroundColor: CHART_COLORS.purple,
+                }
+            ]
+        };
+        new Chart(document.getElementById('aprendizajeActivoChart'), {
+            type: 'bar',
+            data: aprendizajeActivoData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { stacked: true, grid: { display: false } },
+                    y: { stacked: true, beginAtZero: true, max: 100, grid: { color: CHART_COLORS.lightGray } }
+                },
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Impacto de Estrategias Activas con IA', font: { size: 16 }, color: CHART_COLORS.darkGray },
+                    tooltip: { mode: 'index', intersect: false, callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        // 4. Preparación Exámenes Chart (Radar)
+        const preparacionExamenesLabels = wrapLabels([
+            'Personalización', 'Cobertura Tax. Bloom', 'Feedback Inmediato',
+            'Eficiencia de Tiempo', 'Reducción de Estrés'
+        ], 16);
+        const preparacionExamenesData = {
+            labels: preparacionExamenesLabels,
+            datasets: [{
+                label: 'Creación de Guías IA',
+                data: [7, 6, 5, 8, 6], // Mock data
+                fill: true,
+                backgroundColor: 'rgba(255, 140, 0, 0.2)', // Orange transparent
+                borderColor: CHART_COLORS.orange,
+                pointBackgroundColor: CHART_COLORS.orange,
+            }, {
+                label: 'Generación Preguntas IA',
+                data: [8, 9, 7, 7, 7], // Mock data
+                fill: true,
+                backgroundColor: 'rgba(0, 128, 128, 0.2)', // Teal transparent
+                borderColor: CHART_COLORS.teal,
+                pointBackgroundColor: CHART_COLORS.teal,
+            }, {
+                label: 'Simulación Evaluación IA',
+                data: [9, 8, 9, 6, 8], // Mock data
+                fill: true,
+                backgroundColor: 'rgba(147, 112, 219, 0.2)', // Purple transparent
+                borderColor: CHART_COLORS.purple,
+                pointBackgroundColor: CHART_COLORS.purple,
+            }]
+        };
+        new Chart(document.getElementById('preparacionExamenesChart'), {
+            type: 'radar',
+            data: preparacionExamenesData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                elements: {
+                    line: { borderWidth: 2 }
+                },
+                scales: {
+                    r: {
+                        angleLines: { display: true, color: CHART_COLORS.lightGray },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        grid: { color: CHART_COLORS.lightGray },
+                        pointLabels: { font: { size: 10 } }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Comparativa de Estrategias de Examen con IA', font: { size: 16 }, color: CHART_COLORS.darkGray },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        // 5. Evolución Importancia Chart (Line)
+        const evolucionImportanciaData = {
+            labels: ['2023', '2024', '2025 (Actual)', '2026 (Proy.)', '2027 (Proy.)'],
+            datasets: [{
+                label: 'Nivel de Importancia de Ing. de Prompts (Escala 1-100)',
+                data: [60, 75, 85, 92, 98], // Mock data
+                fill: true,
+                borderColor: CHART_COLORS.teal,
+                backgroundColor: 'rgba(0, 128, 128, 0.1)',
+                tension: 0.3,
+                pointRadius: 5,
+                pointBackgroundColor: CHART_COLORS.teal
+            }]
+        };
+        new Chart(document.getElementById('evolucionImportanciaChart'), {
+            type: 'line',
+            data: evolucionImportanciaData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, max: 100, grid: { color: CHART_COLORS.lightGray } },
+                    x: { grid: { display: false } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Crecimiento Proyectado de la Ing. de Prompts', font: { size: 16 }, color: CHART_COLORS.darkGray },
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

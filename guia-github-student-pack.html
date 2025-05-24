@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Definitiva: GitHub Student Pack en la UNPSJB - Por Miyo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .alert-card {
+            border-left-width: 4px;
+            padding: 1rem;
+        }
+
+        .alert-warning {
+            border-color: #F59E0B;
+            background-color: #FFFBEB;
+        }
+
+        .alert-info {
+            border-color: #3B82F6;
+            background-color: #EFF6FF;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-gradient-to-r from-[#10B981] to-[#3B82F6] text-white p-6 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto">
+            <h1 class="text-3xl md:text-4xl font-bold">Guía Definitiva: GitHub Student Pack en la UNPSJB</h1>
+            <p class="text-sm mt-2">Un tutorial basado en una experiencia real, por Miyo</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 pt-12 max-w-4xl">
+
+        <a href="index.html" class="inline-block mb-8 text-[#FF6B6B] font-semibold hover:underline">&larr; Volver a la
+            Infografía Principal</a>
+
+        <section id="intro" class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-slate-800">Introducción: Cómo Lograr la Verificación
+                (¡Sin Rendirse!)</h2>
+            <p class="text-slate-600 leading-relaxed">Como estudiantes de la UNPSJB, nos enfrentamos a un problema
+                común: no tenemos un correo institucional `@edu`. Esto hace que el proceso de verificación para el
+                GitHub Student Developer Pack falle automáticamente las primeras veces. No te frustres, es normal. Esta
+                guía se basa en un caso real y te mostrará exactamente qué hacer para superar los rechazos automáticos y
+                conseguir la aprobación.</p>
+        </section>
+
+        <section id="preparacion" class="mb-12 card">
+            <h3 class="text-xl font-bold mb-4 text-[#3B82F6]">Checklist: Antes de Empezar a Aplicar</h3>
+            <p class="text-slate-600 mb-4">La clave del éxito está en la preparación. Asegúrate de tener todo esto listo
+                ANTES de enviar tu primera solicitud.</p>
+            <ul class="list-disc list-inside space-y-3 text-slate-700">
+                <li><strong>Tu Perfil de GitHub Completo:</strong> Tu nombre completo en tu perfil debe ser
+                    **exactamente el mismo** que aparece en tus documentos académicos. Sin apodos.</li>
+                <li><strong>Información de Facturación Completa:</strong> Ve a <a
+                        href="https://github.com/settings/billing" target="_blank" rel="noopener"
+                        class="text-blue-600 hover:underline">Configuración de Facturación</a> y llena todos tus datos,
+                    incluyendo tu dirección. **No es necesario agregar un método de pago.** Este paso es obligatorio y
+                    un motivo de rechazo común.</li>
+                <li><strong>Documentación de la UNPSJB:</strong> Descarga desde el SIU Guaraní los dos documentos más
+                    importantes:
+                    <ul class="list-['-_'] list-inside ml-6 mt-1">
+                        <li>Constancia de Alumno Regular (debe tener fecha reciente).</li>
+                        <li>Historia Académica.</li>
+                    </ul>
+                </li>
+                <li><strong>Traducciones Simples al Inglés:</strong> Prepara una traducción simple de tus documentos.
+                    Más abajo te muestro cómo hacerlo fácilmente.</li>
+                <li><strong>Entorno Limpio:</strong> Al momento de aplicar, **no uses un VPN** y asegúrate de que tu
+                    navegador tenga los **permisos de geolocalización activados** para GitHub.</li>
+            </ul>
+        </section>
+
+        <section id="proceso" class="space-y-8">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-slate-800">El Proceso Paso a Paso</h2>
+
+            <div class="card">
+                <h3 class="text-xl font-bold mb-3 text-[#10B981]">Paso 1: La Aplicación y los Rechazos Automáticos</h3>
+                <p class="text-slate-600 mb-4">Ve a la <a href="https://github.com/settings/education/benefits"
+                        target="_blank" rel="noopener" class="text-blue-600 hover:underline">página de beneficios de GitHub
+                        Education</a> y comienza tu aplicación. Es muy probable que tus primeros 2 o 3 intentos sean
+                    rechazados casi instantáneamente por un bot. **No te preocupes, esto es parte del proceso.**</p>
+                <div class="alert-card alert-warning">
+                    <h4 class="font-bold text-yellow-800">Posibles Motivos de Rechazo Automático y Cómo Solucionarlos:
+                    </h4>
+                    <p class="text-sm text-yellow-700 mt-2">Recibirás un email con razones como estas. Aquí está la
+                        solución para cada una:</p>
+                    <ul class="list-disc list-inside space-y-2 mt-2 text-sm text-yellow-700">
+                        <li>"Your name... does not appear... in your GitHub billing information." &rarr; **Solución:**
+                            Revisa que tu nombre y apellido en la <a href="https://github.com/settings/billing" rel="noopener"
+                                                            class="font-semibold underline" target="_blank">info de facturación</a> y en tu perfil de GitHub sea
+                                                        idéntico al de tus constancias.</li>
+                        <li>"The image... does not appear to contain your school name." &rarr; **Solución:** Asegúrate
+                            de que el nombre "Universidad Nacional de la Patagonia San Juan Bosco" esté claramente
+                            visible, no solo el logo.</li>
+                        <li>"Your document does not appear to include a date." &rarr; **Solución:** La constancia de
+                            alumno regular debe ser reciente para mostrar tu afiliación actual.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-bold mb-3 text-[#10B981]">Paso 2: La Aplicación "Definitiva" con la Foto</h3>
+                <p class="text-slate-600 mb-4">Después de un par de intentos, en la aplicación que requiere que **saques
+                    una foto con tu cámara**, prepara esta escena:</p>
+                <ol class="list-decimal list-inside space-y-2 text-slate-700">
+                    <li>Imprime tu Constancia de Alumno Regular, tu Historia Académica y las traducciones al inglés.
+                    </li>
+                    <li>Coloca todos los papeles uno al lado del otro sobre una mesa bien iluminada.</li>
+                    <li>Usa la opción de la cámara en el formulario de GitHub para sacar una foto clara donde se vean
+                        todos los documentos juntos.</li>
+                </ol>
+                <p class="text-slate-600 mt-3">Este intento también podría ser rechazado, pero es posible que quede
+                    "pendiente de revisión". Ese es nuestro objetivo.</p>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-bold mb-3 text-[#10B981]">Paso 3: Contactar a Soporte (El Paso Decisivo)</h3>
+                <p class="text-slate-600 mb-4">Si después de 3-4 intentos sigues sin aprobación, es hora de contactar a
+                    un humano. Este es el paso que garantiza el éxito.</p>
+                <ol class="list-decimal list-inside space-y-2 text-slate-700">
+                                    <li>Ve a la <a href="https://support.github.com/request" target="_blank" rel="noopener"
+                                            class="text-blue-600 hover:underline">página de soporte de GitHub</a>.</li>
+                                    <li>Baja hasta la sección "Beneficios o programa de GitHub Education" y elige la opción de
+                                        **"Contacto"**.</li>
+                                    <li>Abre un nuevo ticket. Sé amable y explica tu situación claramente. Menciona que eres estudiante
+                                        de la UNPSJB, que la universidad no da email `@edu` y que has intentado varias veces la
+                                        verificación automática sin éxito.</li>
+                                    <li>**Adjunta todos tus documentos** al ticket: la constancia, la historia académica y, si quieres,
+                                        la foto que sacaste.</li>
+                                </ol>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-bold mb-3 text-[#10B981]">Pro-Tip: Cómo Traducir tus Documentos con IA</h3>
+                <p class="text-slate-600 mb-4">Para facilitar la revisión, puedes pedirle a una IA como ChatGPT o Gemini
+                    que traduzca tus documentos. Usa un prompt (una instrucción) como este:</p>
+                <div class="code-block text-sm">
+                    <p>Me gustaría me des una versión del siguiente documento, traducida al inglés y con formato
+                        estándar de fechas. Debo respetar en la medida de las posibilidades las siguientes indicaciones:
+                    </p>
+                    <p class="mt-2 pl-4 border-l-2 border-gray-500 italic">"The image you selected does not appear to
+                        contain your school name. Your complete school name must appear in your document... If your
+                        official document is not in English then you may photograph the original next to an English
+                        translation."</p>
+                    <p class="mt-2 pl-4 border-l-2 border-gray-500 italic">"Your document does not appear to include a
+                        date demonstrating current academic affiliation..."</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-bold mb-3 text-[#10B981]">Paso 4: ¡Aprobación y a Disfrutar!</h3>
+                <p class="text-slate-600 mb-4">El soporte humano revisará tu caso y, con toda la documentación, te
+                    aprobarán. Ten en cuenta:</p>
+                <ul class="list-disc list-inside space-y-3 text-slate-700">
+                    <li>La aprobación puede tardar un par de días después de contactar a soporte.</li>
+                    <li>Una vez aprobado, los beneficios pueden tardar **hasta 72 horas** en activarse.</li>
+                    <li>Podrás ver tus beneficios aquí: <a href="https://github.com/settings/education/benefits"
+                                                target="_blank" rel="noopener" class="text-blue-600 hover:underline">Mis Beneficios de Educación</a>.</li>
+                                        <li>Para canjear **GitHub Copilot Pro gratis**, usa este enlace específico: <a
+                                                href="https://github.com/github-copilot/signup" target="_blank" rel="noopener"
+                                                class="text-blue-600 hover:underline">Activar Copilot Pro</a>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="text-center p-6 text-slate-500 text-sm mt-12">
+            <p><a href="index.html" class="hover:underline">Volver a la Infografía Principal</a></p>
+        </footer>
+
+    </main>
+</body>
+
+</html>
