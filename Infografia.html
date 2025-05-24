@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: El Panorama de las Herramientas de IA para Codificación en 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #1F2937; /* text-gray-800 */
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #4B5563; /* text-gray-600 */
+            margin-bottom: 2.5rem;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FF6B6B; /* Accent1 */
+        }
+        .kpi-label {
+            font-size: 1rem;
+            color: #4B5563; /* text-gray-600 */
+            margin-top: 0.25rem;
+        }
+        .flowchart-step {
+            background-color: #FF6B6B; /* Accent1 */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            text-align: center;
+            min-width: 180px;
+        }
+        .flowchart-arrow {
+            font-size: 2rem;
+            color: #FF6B6B; /* Accent1 */
+            margin: 0 1rem;
+            align-self: center;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-gradient-to-r from-[#FF6B6B] to-[#FFA500] text-white p-6 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl md:text-4xl font-bold">El Panorama de las Herramientas de IA para Codificación en 2025</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 pt-12">
+
+        <section class="mb-16 text-center">
+            <p class="text-lg md:text-xl text-slate-700 max-w-3xl mx-auto">
+                La inteligencia artificial está transformando radicalmente el desarrollo de software. En 2025, un vibrante ecosistema de herramientas de IA asiste a los programadores, aumentando la productividad y redefiniendo los flujos de trabajo. Esta infografía explora las capacidades, tendencias y el impacto de los principales actores en este campo dinámico.
+            </p>
+        </section>
+
+        <section id="gigantes" class="mb-16">
+            <h2 class="section-title">Los Gigantes del Código IA: Líderes del Mercado</h2>
+            <p class="section-subtitle">
+                Las grandes tecnológicas y startups especializadas compiten con soluciones cada vez más sofisticadas, integrando IA profundamente en el ciclo de vida del desarrollo.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="stat-card">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FF6B6B]">🐙 GitHub Copilot</h3>
+                    <p class="text-slate-600 text-sm mb-3">Impulsado por OpenAI y Microsoft</p>
+                    <p class="text-slate-700">Destaca por su <strong class="text-[#FF6B6B]">integración profunda en el ecosistema GitHub</strong> y sus avanzadas <strong class="text-[#FF6B6B]">capacidades agénticas</strong> como Copilot Workspace y el nuevo agente de codificación, que pueden gestionar tareas de desarrollo de principio a fin.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FF6B6B]">💬 ChatGPT (Modelos OpenAI)</h3>
+                    <p class="text-slate-600 text-sm mb-3">Desarrollado por OpenAI</p>
+                    <p class="text-slate-700">Sobresale por la <strong class="text-[#FF6B6B]">potencia de sus modelos subyacentes (GPT-4.5, o1)</strong>, su versatilidad más allá del código y una API flexible que permite integraciones personalizadas. El agente Codex (preview) promete mayor autonomía.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FF6B6B]">🧠 Claude (Anthropic)</h3>
+                    <p class="text-slate-600 text-sm mb-3">Creado por Anthropic</p>
+                    <p class="text-slate-700">Conocido por su <strong class="text-[#FF6B6B]">fuerte capacidad de razonamiento</strong>, manejo de <strong class="text-[#FF6B6B]">contextos extensos</strong> (hasta 200K+ tokens) y un enfoque en la seguridad. Claude Code (CLI) permite interacción directa con bases de código. Obtuvo un <strong class="text-[#FF6B6B]">70.3% en SWE-Bench</strong>.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FFA500]">🔍 Cody (Sourcegraph)</h3>
+                    <p class="text-slate-600 text-sm mb-3">De Sourcegraph</p>
+                    <p class="text-slate-700">Su principal fortaleza es la <strong class="text-[#FFA500]">comprensión del contexto de toda la base de código</strong>, gracias a su integración con la búsqueda de Sourcegraph. Ofrece elección de LLMs y potentes capacidades de refactorización.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FFA500]">☁️ Amazon Q Developer</h3>
+                    <p class="text-slate-600 text-sm mb-3">Parte del ecosistema AWS</p>
+                    <p class="text-slate-700">Se distingue por su <strong class="text-[#FFA500]">profunda integración con AWS</strong>, un fuerte enfoque en <strong class="text-[#FFA500]">seguridad y cumplimiento</strong>, y agentes especializados para tareas de desarrollo y transformación de código en AWS.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FFA500]">✨ Google Gemini Code Assist</h3>
+                    <p class="text-slate-600 text-sm mb-3">Impulsado por Google</p>
+                    <p class="text-slate-700">Potenciado por el modelo <strong class="text-[#FFA500]">Gemini 2.5</strong>, destaca por su próxima <strong class="text-[#FFA500]">ventana de contexto de 2 millones de tokens</strong> y su integración con el ecosistema de Google Cloud. Herramientas como Jules y Stitch expanden su alcance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="opensource" class="mb-16">
+            <h2 class="section-title">El Poder del Código Abierto</h2>
+            <p class="section-subtitle">
+                Modelos como StarCoder2, Code Llama y DeepSeek Coder están democratizando el acceso a IA potente para codificación, ofreciendo transparencia y fomentando la innovación comunitaria.
+            </p>
+            <div class="stat-card">
+                <h3 class="text-xl font-semibold mb-4 text-center text-[#FF6B6B]">Modelos Open Source Destacados y sus Capacidades</h3>
+                <p class="text-slate-700 mb-6 text-center">Estos modelos, con un número creciente de parámetros y entrenados en vastos conjuntos de datos, ofrecen un rendimiento cada vez más competitivo frente a las alternativas comerciales, siendo una opción atractiva para investigadores y organizaciones que priorizan la personalización y el control.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <span class="text-5xl">🌟</span>
+                        <h4 class="text-lg font-semibold mt-2 text-[#FF6B6B]">StarCoder2</h4>
+                        <p class="text-sm text-slate-600">Hasta 15B de parámetros, entrenado en +600 lenguajes.</p>
+                    </div>
+                    <div>
+                        <span class="text-5xl">🦙</span>
+                        <h4 class="text-lg font-semibold mt-2 text-[#FFA500]">Code Llama (Llama 4)</h4>
+                        <p class="text-sm text-slate-600">Hasta 70B de parámetros (Code Llama), Llama 4 con multimodalidad y contexto de hasta 10M tokens.</p>
+                    </div>
+                    <div>
+                        <span class="text-5xl">🚀</span>
+                        <h4 class="text-lg font-semibold mt-2 text-[#FFD700]">DeepSeek Coder</h4>
+                        <p class="text-sm text-slate-600">Hasta 33B de parámetros, fuerte rendimiento en benchmarks (superando a GPT-3.5-turbo en HumanEval).</p>
+                    </div>
+                </div>
+                 <div class="mt-6 chart-container h-[300px] md:h-[350px]">
+                    <canvas id="openSourceParamsChart"></canvas>
+                </div>
+                <p class="text-sm text-slate-600 mt-4 text-center">El gráfico ilustra el tamaño máximo de los modelos (en miles de millones de parámetros) para algunas de las principales iniciativas de código abierto, demostrando su escala y potencial.</p>
+            </div>
+        </section>
+
+        <section id="capacidades" class="mb-16">
+            <h2 class="section-title">Comparativa de Capacidades Clave</h2>
+            <p class="section-subtitle">
+                Las herramientas de IA para codificación ofrecen un amplio abanico de funcionalidades que asisten al desarrollador en diversas etapas del ciclo de vida del software.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold mb-3 text-[#FF6B6B]">🧩 Integración con IDEs Populares</h3>
+                    <p class="text-slate-700 mb-4">La mayoría de las herramientas ofrecen una fuerte integración con los Entornos de Desarrollo Integrado (IDEs) más utilizados, facilitando su adopción en los flujos de trabajo existentes.</p>
+                    <div class="chart-container h-[280px] md:h-[320px]">
+                        <canvas id="ideIntegrationChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2 text-center">Número de herramientas principales analizadas que soportan cada IDE.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold mb-3 text-[#FF6B6B]">🛠️ Funcionalidades Estrella Comunes</h3>
+                    <ul class="space-y-3 text-slate-700">
+                        <li class="flex items-center"><span class="text-2xl mr-3">⌨️</span> Generación de código (autocompletado, funciones completas)</li>
+                        <li class="flex items-center"><span class="text-2xl mr-3">💡</span> Explicación de fragmentos de código complejos</li>
+                        <li class="flex items-center"><span class="text-2xl mr-3">🔄</span> Refactorización y optimización de código</li>
+                        <li class="flex items-center"><span class="text-2xl mr-3">🧪</span> Generación de pruebas unitarias y de integración</li>
+                        <li class="flex items-center"><span class="text-2xl mr-3">🐞</span> Asistencia en la depuración y corrección de errores</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-slate-600">Estas capacidades son ofrecidas, con distintos niveles de sofisticación, por la mayoría de las herramientas líderes del mercado.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="benchmarks" class="mb-16">
+            <h2 class="section-title">Rendimiento Bajo la Lupa</h2>
+            <p class="section-subtitle">
+                Los benchmarks estandarizados ayudan a medir y comparar las capacidades de generación y razonamiento de código de los diferentes modelos de IA.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold mb-3 text-[#FF6B6B]">HumanEval (Pass@1) - Modelos Destacados 2025</h3>
+                    <p class="text-slate-700 mb-4">Mide la capacidad del modelo para generar código Python correcto a partir de descripciones en lenguaje natural.</p>
+                    <div class="chart-container">
+                        <canvas id="humanEvalChart"></canvas>
+                    </div>
+                     <p class="text-xs text-slate-500 mt-2 text-center">Puntuaciones más altas indican mejor rendimiento.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold mb-3 text-[#FF6B6B]">SWE-Bench - Rendimiento Sobresaliente</h3>
+                    <p class="text-slate-700 mb-4">Evalúa la capacidad de los modelos para resolver problemas reales de ingeniería de software extraídos de repositorios de GitHub.</p>
+                    <div class="text-center py-10">
+                        <div class="kpi-value">70.3%</div>
+                        <div class="kpi-label">Claude 3.7 Sonnet</div>
+                        <p class="text-slate-600 mt-2">Estableciendo un nuevo récord en resolución de tareas complejas de SWE-Bench.</p>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-8 text-center text-sm text-slate-600">
+                Nota: Los benchmarks proporcionan una medida, pero el rendimiento en el mundo real puede variar. La tendencia es hacia benchmarks más complejos y representativos.
+            </p>
+        </section>
+
+        <section id="adopcion" class="mb-16">
+            <h2 class="section-title">Adopción Masiva y Mercado en Expansión</h2>
+            <p class="section-subtitle">
+                La adopción de herramientas de IA para codificación está en pleno auge, tanto a nivel individual por desarrolladores como estratégicamente por las empresas, impulsando un crecimiento significativo del mercado.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold mb-3 text-[#FF6B6B]">Adopción por Desarrolladores (DORA 2024)</h3>
+                    <p class="text-slate-700 mb-4">Un alto porcentaje de desarrolladores ya integra IA generativa en sus flujos de trabajo diarios.</p>
+                    <div class="chart-container h-[300px] md:h-[320px]">
+                        <canvas id="developerAdoptionChart"></canvas>
+                    </div>
+                    <p class="text-slate-600 mt-4 text-center">El 76% de los desarrolladores utiliza IA generativa diariamente.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold mb-3 text-[#FF6B6B]">Crecimiento del Mercado Global (USD)</h3>
+                    <p class="text-slate-700 mb-4">Se proyecta una expansión exponencial del mercado de herramientas de IA para código en los próximos años.</p>
+                    <div class="chart-container">
+                        <canvas id="marketGrowthChart"></canvas>
+                    </div>
+                    <p class="text-slate-600 mt-4 text-center">De $6.7 mil millones en 2024 a $25.7 mil millones para 2030.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="futuro" class="mb-16">
+            <h2 class="section-title">El Futuro: Agentes Inteligentes y Personalización</h2>
+            <p class="section-subtitle">
+                Las tendencias apuntan hacia una IA más autónoma, con agentes capaces de realizar tareas complejas, y modelos personalizados que se adaptan a las necesidades específicas de cada organización.
+            </p>
+            <div class="stat-card">
+                <h3 class="text-xl font-semibold mb-6 text-center text-[#FF6B6B]">Evolución de la Asistencia IA en Codificación</h3>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="flowchart-step">Sugerencias de Código<br>(Asistente Pasivo)</div>
+                    <div class="flowchart-arrow hidden md:block">➡️</div>
+                    <div class="flowchart-arrow md:hidden self-center text-3xl transform rotate-90">⬇️</div>
+                    <div class="flowchart-step bg-[#FFA500]">Agentes Autónomos<br>(Colaborador Proactivo)</div>
+                </div>
+                <p class="mt-6 text-slate-700 text-center">
+                    Los desarrolladores pasarán de consumir fragmentos de código a orquestar agentes de IA que pueden planificar, codificar, probar y mantener software de forma más independiente. La IA local y los modelos ajustados a bases de código privadas también ganarán tracción por motivos de privacidad y relevancia.
+                </p>
+            </div>
+        </section>
+
+        <section id="estudiantes" class="mb-16">
+            <h2 class="section-title">Acceso para Estudiantes en Argentina</h2>
+            <p class="section-subtitle">
+                Si bien la disponibilidad de planes con descuento para estudiantes varía, existen opciones gratuitas y programas que facilitan el acceso a estas poderosas herramientas.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="stat-card bg-gradient-to-br from-[#FF6B6B] to-[#FF8C42] text-white">
+                    <h3 class="text-xl font-semibold mb-2">🎓 GitHub Copilot Pro</h3>
+                    <p>Gratis para estudiantes verificados vía GitHub Education. (La verificación en Argentina puede presentar desafíos).</p>
+                </div>
+                <div class="stat-card bg-gradient-to-br from-[#FFA500] to-[#FFD700] text-slate-800">
+                    <h3 class="text-xl font-semibold mb-2">🌐 Replit (Nivel Gratuito)</h3>
+                    <p>Ideal para iniciar, con IA básica y entorno sin configuración.</p>
+                </div>
+                <div class="stat-card bg-gradient-to-br from-[#4ECDC4] to-[#56B4D3] text-white">
+                    <h3 class="text-xl font-semibold mb-2">💡 Modelos Open Source</h3>
+                    <p>StarCoder2, Code Llama, etc. Gratuitos (requieren cómputo propio/plataformas).</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold mb-2 text-[#FF6B6B]">☁️ Amazon Q Developer (Nivel Gratuito)</h3>
+                    <p>Accesible globalmente con AWS Builder ID, útil para aprender el ecosistema AWS.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold mb-2 text-[#FFA500]">✨ Google Gemini Code Assist (Individual)</h3>
+                    <p>Nivel gratuito con generoso límite de autocompletado, disponible globalmente.</p>
+                </div>
+            </div>
+            <p class="mt-6 text-center text-sm text-slate-600">
+                Es crucial que los estudiantes investiguen activamente los programas disponibles. Un correo <code>@edu</code> puede ayudar, pero no siempre es indispensable si se cuenta con otra documentación probatoria.
+            </p>
+        </section>
+
+        <section class="text-center py-10 border-t border-slate-200">
+            <h2 class="text-2xl font-semibold mb-4 text-[#1F2937]">Un Horizonte en Constante Evolución</h2>
+            <p class="text-lg text-slate-700 max-w-3xl mx-auto">
+                Las herramientas de IA para codificación continuarán su rápida evolución, redefiniendo la productividad y la creatividad en el desarrollo de software. Mantenerse actualizado con estas tecnologías será clave para los profesionales del futuro.
+            </p>
+        </section>
+    </main>
+
+    <footer class="text-center p-6 bg-slate-800 text-slate-300 text-sm">
+        <p>&copy; Mayo 2025 - Infografía basada en el "Análisis Comparativo Exhaustivo de Herramientas de Inteligencia Artificial para Codificación en 2025".</p>
+        <p>Las visualizaciones de datos son representaciones basadas en la información del informe.</p>
+    </footer>
+
+    <script>
+        const wrapLabel = (label, maxLength = 16) => {
+            if (typeof label !== 'string') return label;
+            const words = label.split(' ');
+            let currentLine = '';
+            const lines = [];
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines.length > 1 ? lines : lines[0];
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const CHART_COLORS = {
+            accent1: '#FF6B6B',
+            accent2: '#FFA500',
+            accent3: '#FFD700',
+            accent4: '#FF8C42',
+            textPrimary: '#1F2937',
+            gridColor: '#E5E7EB'
+        };
+
+        // Chart: Open Source Params
+        const openSourceParamsCtx = document.getElementById('openSourceParamsChart');
+        if (openSourceParamsCtx) {
+            new Chart(openSourceParamsCtx, {
+                type: 'bar',
+                data: {
+                    labels: [wrapLabel('StarCoder2'), wrapLabel('Code Llama'), wrapLabel('DeepSeek Coder')],
+                    datasets: [{
+                        label: 'Máx. Parámetros (Miles de Millones)',
+                        data: [15, 70, 33],
+                        backgroundColor: [CHART_COLORS.accent1, CHART_COLORS.accent2, CHART_COLORS.accent3],
+                        borderColor: [CHART_COLORS.accent1, CHART_COLORS.accent2, CHART_COLORS.accent3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Parámetros (Miles de Millones)', color: CHART_COLORS.textPrimary },
+                            ticks: { color: CHART_COLORS.textPrimary },
+                            grid: { color: CHART_COLORS.gridColor }
+                        },
+                        y: {
+                            ticks: { color: CHART_COLORS.textPrimary, font: { size: 10 } },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            backgroundColor: '#2A2A2A',
+                            titleColor: '#FFFFFF',
+                            bodyColor: '#FFFFFF',
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart: IDE Integration
+        const ideIntegrationCtx = document.getElementById('ideIntegrationChart');
+        if (ideIntegrationCtx) {
+            new Chart(ideIntegrationCtx, {
+                type: 'bar',
+                data: {
+                    labels: [wrapLabel('VS Code'), wrapLabel('JetBrains IDEs'), wrapLabel('Eclipse'), wrapLabel('Visual Studio')],
+                    datasets: [{
+                        label: 'Nº Herramientas con Soporte',
+                        data: [7, 6, 4, 4],
+                        backgroundColor: [CHART_COLORS.accent1, CHART_COLORS.accent2, CHART_COLORS.accent3, CHART_COLORS.accent4],
+                        borderColor: [CHART_COLORS.accent1, CHART_COLORS.accent2, CHART_COLORS.accent3, CHART_COLORS.accent4],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Cantidad de Herramientas', color: CHART_COLORS.textPrimary },
+                            ticks: { color: CHART_COLORS.textPrimary, stepSize: 1 },
+                            grid: { color: CHART_COLORS.gridColor }
+                        },
+                        y: {
+                            ticks: { color: CHART_COLORS.textPrimary, font: {size: 10} },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            backgroundColor: '#2A2A2A',
+                            titleColor: '#FFFFFF',
+                            bodyColor: '#FFFFFF',
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Chart: HumanEval
+        const humanEvalCtx = document.getElementById('humanEvalChart');
+        if (humanEvalCtx) {
+            new Chart(humanEvalCtx, {
+                type: 'bar',
+                data: {
+                    labels: [wrapLabel('LLMDebugger (OpenAI o1)'), wrapLabel('OpenAI o4-mini'), wrapLabel('Gemini 2.5 Pro'), wrapLabel('Claude 3.5 Sonnet')],
+                    datasets: [{
+                        label: 'HumanEval Pass@1 (%)',
+                        data: [99.4, 93.4, 92.0, 92.0],
+                        backgroundColor: [CHART_COLORS.accent1, CHART_COLORS.accent2, CHART_COLORS.accent3, CHART_COLORS.accent4],
+                        borderColor: [CHART_COLORS.accent1, CHART_COLORS.accent2, CHART_COLORS.accent3, CHART_COLORS.accent4],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 85,
+                            max: 100,
+                            title: { display: true, text: 'Puntuación Pass@1 (%)', color: CHART_COLORS.textPrimary },
+                            ticks: { color: CHART_COLORS.textPrimary },
+                            grid: { color: CHART_COLORS.gridColor }
+                        },
+                        x: {
+                            ticks: { color: CHART_COLORS.textPrimary, font: {size: 10} },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            backgroundColor: '#2A2A2A',
+                            titleColor: '#FFFFFF',
+                            bodyColor: '#FFFFFF',
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart: Developer Adoption
+        const developerAdoptionCtx = document.getElementById('developerAdoptionChart');
+        if (developerAdoptionCtx) {
+            new Chart(developerAdoptionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Usa IA Generativa Diariamente', 'No Usa IA Generativa'],
+                    datasets: [{
+                        label: 'Adopción por Desarrolladores',
+                        data: [76, 24],
+                        backgroundColor: [CHART_COLORS.accent1, CHART_COLORS.gridColor],
+                        borderColor: ['#FFFFFF', '#FFFFFF'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: CHART_COLORS.textPrimary } },
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            backgroundColor: '#2A2A2A',
+                            titleColor: '#FFFFFF',
+                            bodyColor: '#FFFFFF',
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart: Market Growth
+        const marketGrowthCtx = document.getElementById('marketGrowthChart');
+        if (marketGrowthCtx) {
+            new Chart(marketGrowthCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2024', '2026', '2028', '2030'],
+                    datasets: [{
+                        label: 'Mercado Global (Miles de Millones USD)',
+                        data: [6.7, 12.5, 19.0, 25.7], // Estimaciones intermedias para una curva más suave
+                        fill: true,
+                        backgroundColor: 'rgba(255, 107, 107, 0.2)', // Accent1 con transparencia
+                        borderColor: CHART_COLORS.accent1,
+                        tension: 0.3,
+                        pointBackgroundColor: CHART_COLORS.accent1,
+                        pointBorderColor: '#FFFFFF',
+                        pointHoverBackgroundColor: '#FFFFFF',
+                        pointHoverBorderColor: CHART_COLORS.accent1,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Miles de Millones USD', color: CHART_COLORS.textPrimary },
+                            ticks: { color: CHART_COLORS.textPrimary },
+                            grid: { color: CHART_COLORS.gridColor }
+                        },
+                        x: {
+                            ticks: { color: CHART_COLORS.textPrimary },
+                            grid: { color: CHART_COLORS.gridColor }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            backgroundColor: '#2A2A2A',
+                            titleColor: '#FFFFFF',
+                            bodyColor: '#FFFFFF',
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

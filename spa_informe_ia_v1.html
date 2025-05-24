@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva de Prompt Engineering para Estudiantes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Visualization & Content Choices:
+        - Report Info: 8 Principios del Prompt -> Goal: Inform/Compare -> Viz: Interactive HTML cards -> Interaction: Click to expand.
+        - Report Info: Proceso del "Gem" Asistente -> Goal: Organize -> Viz: HTML/CSS Flowchart -> Interaction: Static visual.
+        - Report Info: "Gem" Master Prompt -> Goal: Inform -> Viz: Preformatted HTML text block -> Interaction: Scroll/Copy.
+        - Report Info: Técnicas de Aprendizaje Activo (Feynman, Analogías, Conexión) -> Goal: Inform/Organize -> Viz: HTML accordions/sections -> Interaction: Click to expand. Gemini features added for Feynman evaluation, analogy generation.
+        - Report Info: Estrategias de Preparación de Exámenes -> Goal: Compare/Inform -> Viz: Chart.js Bar Chart & HTML Tabs -> Interaction: View chart, click tabs. Gemini feature added for practice question generation.
+        - Report Info: Estilos VARK y apoyo IA -> Goal: Inform/Organize -> Viz: Interactive HTML sections for each VARK style -> Interaction: Click to view tips.
+        - Report Info: Tablas del informe -> Goal: Inform/Organize -> Viz: HTML Tables -> Interaction: Static display.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6;
+            color: #111827;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 400px;
+            }
+        }
+
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-link {
+            padding: 0.75rem 1rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            color: #374151;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            border-bottom-color: #3B82F6;
+            color: #3B82F6;
+        }
+
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .interactive-card {
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #3B82F6;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #D1D5DB;
+        }
+
+        .subsection-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #10B981;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .gem-prompt-container {
+            background-color: #1F2937;
+            color: #F3F4F6;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            max-height: 500px;
+        }
+
+        .flowchart-step {
+            background-color: #E0E7FF;
+            border: 1px solid #6366F1;
+            color: #4338CA;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            text-align: center;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
+        .flowchart-arrow {
+            color: #6366F1;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 0.25rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #D1D5DB;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #E5E7EB;
+        }
+
+        .tab-button {
+            padding: 0.5rem 1rem;
+            margin-right: 0.5rem;
+            border-radius: 0.375rem 0.375rem 0 0;
+            background-color: #E5E7EB;
+            color: #374151;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .tab-button.active {
+            background-color: #3B82F6;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 1rem;
+            border: 1px solid #D1D5DB;
+            border-top: none;
+            border-radius: 0 0 0.375rem 0.375rem;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .vark-card {
+            border: 1px solid #D1D5DB;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        .vark-card.active {
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 2px #3B82F6;
+        }
+
+        .vark-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gemini-feature-card {
+            background-color: #E0F2F7;
+            /* Light Teal variant for Gemini features */
+            border-left: 4px solid #008080;
+            /* Teal accent */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .gemini-output {
+            background-color: #FFFFFF;
+            border: 1px solid #D1D5DB;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            margin-top: 0.75rem;
+            min-height: 50px;
+            white-space: pre-wrap;
+            /* To preserve formatting from Gemini */
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            /* Light grey */
+            border-top: 4px solid #3B82F6;
+            /* Blue */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin: 0.5rem auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <nav class="sticky-nav shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-2xl font-bold text-blue-600">Guía de Prompts IA</div>
+                <div class="hidden md:flex space-x-1">
+                    <a href="#inicio" class="nav-link">Inicio</a>
+                    <a href="#fundamentos" class="nav-link">Fundamentos</a>
+                    <a href="#gem" class="nav-link">Asistente Gem</a>
+                    <a href="#aprender" class="nav-link">Aprender Mejor</a>
+                    <a href="#examenes" class="nav-link">Exámenes</a>
+                    <a href="#estilo" class="nav-link">Tu Estilo</a>
+                    <a href="#conclusion" class="nav-link">Conclusión</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" type="button" title="Abrir menú de navegación"
+                        class="text-gray-700 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="#inicio" class="block nav-link text-center border-b">Inicio</a>
+            <a href="#fundamentos" class="block nav-link text-center border-b">Fundamentos</a>
+            <a href="#gem" class="block nav-link text-center border-b">Asistente Gem</a>
+            <a href="#aprender" class="block nav-link text-center border-b">Aprender Mejor</a>
+            <a href="#examenes" class="block nav-link text-center border-b">Exámenes</a>
+            <a href="#estilo" class="block nav-link text-center border-b">Tu Estilo</a>
+            <a href="#conclusion" class="block nav-link text-center">Conclusión</a>
+        </div>
+    </nav>
+
+    <header id="inicio" class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 px-4 text-center">
+        <div class="container mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Potencia Tu Aprendizaje con IA</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8">Guía Interactiva de Ingeniería de Prompts para
+                Estudiantes de Informática (Basado en Investigación 2025)</p>
+            <p class="text-3xl font-semibold">¡Desbloquea tu Potencial!</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <section id="intro-spa" class="card text-center mb-12">
+            <h2 class="section-title">Bienvenido a tu Guía Interactiva</h2>
+            <p class="text-lg mb-4">Esta aplicación está diseñada para ayudarte a dominar el arte de la ingeniería de
+                prompts. Aprenderás a comunicarte eficazmente con la Inteligencia Artificial (IA) para mejorar tus
+                estudios, prepararte para exámenes y descubrir tu método de aprendizaje ideal. Explora las secciones
+                para convertirte en un experto en la creación de prompts y aprovechar al máximo las herramientas de IA,
+                incluyendo nuevas funciones interactivas potenciadas por Gemini.</p>
+            <p class="text-md text-gray-600">Navega usando el menú superior o simplemente desplázate hacia abajo.</p>
+        </section>
+
+        <section id="fundamentos" class="card">
+            <h2 class="section-title text-center">Fundamentos del Prompting Efectivo</h2>
+            <p class="text-center mb-8 text-gray-700">La calidad de la respuesta de una IA depende directamente de la
+                calidad de tu prompt. Aquí exploramos los 8 pilares esenciales para construir instrucciones claras y
+                precisas.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                    <h3 class="font-semibold text-lg text-blue-600 mb-2">1. Claridad y Especificidad</h3>
+                    <div class="accordion-content">
+                        <p class="text-sm text-gray-600">Sé directo y detallado. Evita ambigüedades. Define el alcance
+                            exacto de la tarea, formato de salida, tono y audiencia.</p>
+                        <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> "Genera un script en Python 3
+                            para ordenar una lista de tuplas por su segundo elemento en orden descendente."</p>
+                    </div>
+                </div>
+                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                    <h3 class="font-semibold text-lg text-blue-600 mb-2">2. Contexto</h3>
+                    <div class="accordion-content">
+                        <p class="text-sm text-gray-600">Provee información de fondo relevante, datos necesarios o el
+                            escenario en el que se enmarca la petición.</p>
+                        <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> "Considerando un sistema con
+                            memoria limitada (ej. un microcontrolador), ¿cuál sería un algoritmo de ordenamiento
+                            eficiente para un array pequeño?"</p>
+                    </div>
+                </div>
+                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                    <h3 class="font-semibold text-lg text-blue-600 mb-2">3. Asignación de Rol</h3>
+                    <div class="accordion-content">
+                        <p class="text-sm text-gray-600">Indica a la IA que actúe como un experto o una persona
+                            específica para adaptar tono, estilo y conocimiento.</p>
+                        <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> "Actúa como un Ingeniero de
+                            DevOps. Describe los pasos para desplegar una aplicación web simple usando Docker y
+                            Kubernetes."</p>
+                    </div>
+                </div>
+                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                    <h3 class="font-semibold text-lg text-blue-600 mb-2">4. Estructura y Delimitadores</h3>
+                    <div class="accordion-content">
+                        <p class="text-sm text-gray-600">Organiza el prompt en secciones claras usando delimitadores
+                            (ej. `###`) para facilitar la comprensión de la IA.</p>
+                        <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> `###Tarea###\nExplica la
+                            diferencia entre TCP y UDP.\n###Formato###\nTabla comparativa.`</p>
+                    </div>
+                </div>
+                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                    <h3 class="font-semibold text-lg text-blue-600 mb-2">5. Formato de Salida</h3>
+                    <div class="accordion-content">
+                        <p class="text-sm text-gray-600">Especifica cómo debe ser presentada la respuesta (JSON, lista,
+                            tabla, etc.) para asegurar que sea utilizable.</p>
+                        <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> "Devuelve la configuración de
+                            red en formato JSON con las claves 'ip_address', 'subnet_mask' y 'gateway'."</p>
+                    </div>
+                </div>
+                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                    <h3 class="font-semibold text-lg text-blue-600 mb-2">6. Uso de Ejemplos (Few-Shot)</h3>
+                    <div class="accordion-content">
+                        <p class="text-sm text-gray-600">Incluye uno o más ejemplos de la entrada y la salida deseada
+                            para guiar a la IA en tareas complejas o formatos específicos.</p>
+                        <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> "Entrada: '10101'
+                            (binario)\nSalida: '21' (decimal)\nEntrada: '111' (binario)\nSalida:?"</p>
+                    </div>
+                </div>
+                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                    <h3 class="font-semibold text-lg text-blue-600 mb-2">7. Instrucciones Positivas</h3>
+                    <div class="accordion-content">
+                        <p class="text-sm text-gray-600">Enfócate en lo que la IA *debe* hacer, en lugar de lo que *no
+                            debe* hacer, para una guía más clara y directa.</p>
+                        <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> "Explica el concepto de 'puntero
+                            nulo' en C de forma concisa y precisa."</p>
+                    </div>
+                </div>
+                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                    <h3 class="font-semibold text-lg text-blue-600 mb-2">8. Proceso Iterativo</h3>
+                    <div class="accordion-content">
+                        <p class="text-sm text-gray-600">Refina el prompt basándote en las respuestas obtenidas,
+                            probando variaciones hasta lograr el resultado deseado.</p>
+                        <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> 1. Prompt: "Explica árboles B."
+                            2. Refinamiento: "Explica árboles B para un estudiante de BD, compara con BST, formato
+                            viñetas."</p>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-8 text-sm text-gray-600">Haz clic en cada principio para ver una breve descripción y un
+                ejemplo. Estos pilares son la base para comunicarte eficazmente con cualquier modelo de IA.</p>
+
+            <div class="subsection-title mt-10">Tabla Resumen: Pilares de un Prompt Efectivo</div>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Principio Clave</th>
+                            <th>Descripción Detallada</th>
+                            <th>Ejemplo Conciso (Informática)</th>
+                            <th>Impacto en la Calidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Claridad y Especificidad</strong></td>
+                            <td>Ser directo y detallado en la tarea. Evitar ambigüedades. Definir el alcance exacto.
+                            </td>
+                            <td>"Genera un script en Python 3 para ordenar una lista de tuplas por su segundo elemento
+                                en orden descendente."</td>
+                            <td>Reduce malentendidos, enfoca la respuesta, aumenta la precisión y relevancia.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contexto</strong></td>
+                            <td>Proveer información de fondo relevante, datos necesarios o el escenario en el que se
+                                enmarca la petición.</td>
+                            <td>"Considerando un sistema con memoria limitada (ej. un microcontrolador), ¿cuál sería un
+                                algoritmo de ordenamiento eficiente para un array pequeño?"</td>
+                            <td>Permite a la IA adaptar la respuesta a situaciones específicas, mejorando la
+                                aplicabilidad y pertinencia del resultado.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Asignación de Rol</strong></td>
+                            <td>Indicar a la IA que actúe como un experto o una persona específica.</td>
+                            <td>"Actúa como un Ingeniero de DevOps. Describe los pasos para desplegar una aplicación web
+                                simple usando Docker y Kubernetes."</td>
+                            <td>Adapta el tono, estilo, nivel de detalle y conocimiento técnico de la IA a las
+                                expectativas del rol.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Estructura y Delimitadores</strong></td>
+                            <td>Organizar el prompt en secciones claras usando delimitadores (ej. `###`).</td>
+                            <td>`###Tarea###\nExplica la diferencia entre TCP y UDP.\n###Formato###\nTabla comparativa.`
+                            </td>
+                            <td>Facilita la comprensión del prompt por la IA, mejora la organización de la respuesta.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Formato de Salida</strong></td>
+                            <td>Especificar cómo debe ser presentada la respuesta (JSON, lista, tabla, etc.).</td>
+                            <td>"Devuelve la configuración de red en formato JSON con las claves 'ip_address',
+                                'subnet_mask' y 'gateway'."</td>
+                            <td>Asegura que la respuesta sea directamente utilizable, especialmente para procesamiento
+                                posterior.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Uso de Ejemplos (Few-Shot)</strong></td>
+                            <td>Incluir uno o más ejemplos de la entrada y la salida deseada.</td>
+                            <td>"Entrada: '10101' (binario)\nSalida: '21' (decimal)\nEntrada: '111' (binario)\nSalida:?"
+                            </td>
+                            <td>Guía a la IA sobre el patrón o estilo requerido, crucial para tareas complejas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Instrucciones Positivas</strong></td>
+                            <td>Enfocarse en lo que la IA *debe* hacer, en lugar de lo que *no debe* hacer.</td>
+                            <td>"Explica el concepto de 'puntero nulo' en C de forma concisa y precisa."</td>
+                            <td>Proporciona una guía más clara y directa, mejorando la alineación con la intención.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Proceso Iterativo</strong></td>
+                            <td>Refinar el prompt basándose en las respuestas obtenidas, probando variaciones.</td>
+                            <td>(Proceso) 1. Prompt inicial: "Explica árboles B." 2. Refinamiento: "Explica árboles B
+                                para un estudiante de BD, compara con BST, formato viñetas."</td>
+                            <td>Permite optimizar el prompt progresivamente para respuestas de mayor calidad.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="gem" class="card">
+            <h2 class="section-title text-center">Tu Asistente "Gem": Creando Prompts Perfectos</h2>
+            <p class="text-center mb-6 text-gray-700">El meta-prompting es usar una IA para generar o refinar otros
+                prompts. Tu "Gem" Asistente es un prompt maestro que te guía en este proceso.</p>
+
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div>
+                    <h3 class="subsection-title">¿Qué es el Meta-Prompting?</h3>
+                    <p class="mb-4 text-gray-600">En lugar de crear cada prompt desde cero, puedes pedirle a una IA que
+                        te ayude. Un meta-prompt instruye a la IA para:
+                    <ul class="list-disc list-inside text-gray-600 space-y-1 mt-2">
+                        <li>Generar nuevos prompts basados en un objetivo.</li>
+                        <li>Refinar prompts existentes para mejorar su efectividad.</li>
+                        <li>Automatizar parte del proceso de ingeniería de prompts.</li>
+                    </ul>
+                    </p>
+                    <p class="mt-2 text-gray-600">Esto ahorra tiempo y puede resultar en prompts más robustos y
+                        optimizados.</p>
+
+                    <h3 class="subsection-title mt-6">Proceso del Asistente "Gem"</h3>
+                    <p class="mb-4 text-gray-600">El "Gem" te guía a través de fases para construir tu prompt ideal:</p>
+                    <div class="space-y-2">
+                        <div class="flowchart-step">Fase 1: Definición Rol y Objetivo del Gem</div>
+                        <div class="flowchart-arrow">↓</div>
+                        <div class="flowchart-step">Fase 2: Recopilación Info Inicial (Preguntas)</div>
+                        <div class="flowchart-arrow">↓</div>
+                        <div class="flowchart-step">Fase 3: Profundización Principios Clave</div>
+                        <div class="flowchart-arrow">↓</div>
+                        <div class="flowchart-step">Fase 4: Consideraciones Adicionales</div>
+                        <div class="flowchart-arrow">↓</div>
+                        <div class="flowchart-step">Fase 5: Construcción Prompt y Feedback</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="subsection-title">El Prompt Maestro "Gem"</h3>
+                    <p class="mb-4 text-gray-600">Este es el prompt que puedes usar para configurar a una IA como tu
+                        "Gem" Asistente. Te hará preguntas para construir juntos el prompt perfecto para tu tarea.</p>
+                    <div class="gem-prompt-container">
+                        <pre class="whitespace-pre-wrap text-sm"><code># Fase 1: Definición del Rol y Objetivo del "Gem"
+Actúa como 'Gem', un Asistente Experto en Ingeniería de Prompts. Tu misión es ayudarme a construir un prompt perfecto y altamente efectivo para interactuar con un modelo de lenguaje grande (LLM). Me guiarás paso a paso, haciéndome preguntas clave para asegurar que el prompt final sea claro, específico, contextualizado y optimizado para mi tarea. Al final de nuestra conversación, me proporcionarás el prompt completo que hemos construido juntos, explicando brevemente por qué cada componente contribuye a su efectividad.
+
+# Fase 2: Recopilación de Información Inicial (Preguntas al Usuario)
+Para comenzar, por favor, responde a las siguientes preguntas:
+1.  Tarea Principal y Objetivo: (...)
+2.  Audiencia y Tono: (...)
+3.  Formato de Salida Deseado: (...)
+
+# Fase 3: Profundización en los Principios Clave (Guía Iterativa)
+Excelente. Ahora, vamos a refinar los detalles (...):
+4.  Contexto Necesario: (...)
+5.  Claridad y Especificidad de las Instrucciones: (...)
+6.  Asignación de Rol para el LLM (Persona): (...)
+7.  Uso de Ejemplos (Few-Shot Prompting): (...)
+8.  Instrucciones Positivas: (...)
+9.  Estructura y Delimitadores Internos del Prompt: (...)
+
+# Fase 4: Consideraciones Adicionales y Refinamiento
+Pensemos en algunos aspectos más para optimizar el prompt:
+10. Restricciones y Limitaciones: (...)
+11. Proceso de Razonamiento (Chain-of-Thought): (...)
+12. Información Adicional Crucial: (...)
+
+# Fase 5: Construcción del Prompt Final y Ciclo de Retroalimentación
+Gracias por toda esta valiosa información. (...)
+Estoy listo para recibir tus respuestas a las preguntas 1, 2 y 3 para comenzar.
+(Nota: El prompt completo se encuentra en el informe original)
+</code></pre>
+                    </div>
+                    <button onclick="copyGemPrompt()"
+                        class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow transition duration-150 ease-in-out w-full">
+                        Copiar Prompt "Gem" Completo (del informe)
+                    </button>
+                    <p id="copyMessage" class="text-sm text-green-600 mt-2 hidden">¡Prompt copiado al portapapeles!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="aprender" class="card">
+            <h2 class="section-title text-center">IA para Aprender Mejor: Técnicas Activas</h2>
+            <p class="text-center mb-8 text-gray-700">La IA puede ser tu compañera de estudio interactiva. Descubre cómo
+                aplicar técnicas de aprendizaje activo con su ayuda, ahora con nuevas herramientas potenciadas por
+                Gemini.</p>
+            <div class="space-y-6">
+                <div>
+                    <button class="w-full text-left p-4 bg-indigo-100 hover:bg-indigo-200 rounded-lg focus:outline-none"
+                        onclick="toggleAccordion(this.nextElementSibling)">
+                        <h3 class="font-semibold text-lg text-indigo-700">1. Técnica Feynman con IA (Actuar como Tutor)
+                        </h3>
+                    </button>
+                    <div class="accordion-content p-4 border border-indigo-200 rounded-b-lg">
+                        <p class="text-gray-700 mb-2">Consiste en explicar un concepto complejo en términos simples. La
+                            IA puede ser tu "alumno" o revisor.</p>
+                        <h4 class="font-medium text-gray-800 mt-3 mb-1">Prompt de Ejemplo (Estudiante explica a
+                            IA-alumno):</h4>
+                        <pre class="bg-gray-100 p-2 rounded text-xs whitespace-pre-wrap"><code>Actúa como un estudiante de primer año de secundaria que no sabe absolutamente nada de programación ni de informática.
+Voy a intentar explicarte el concepto de 'Punteros en el lenguaje C'.
+Después de que te dé mi explicación, por favor, dime con total honestidad:
+- ¿Qué partes no entendiste en absoluto?
+- ¿Qué preguntas específicas te surgen?
+- ¿Fue mi explicación lo suficientemente simple para alguien sin experiencia previa?
+
+Mi explicación es la siguiente:
+[El estudiante escribe aquí su explicación detallada de los punteros en C]</code></pre>
+                        <div class="gemini-feature-card">
+                            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 mb-4 rounded"
+                                role="alert">
+                                <strong>Funcionalidad en desarrollo:</strong> Las funciones interactivas con IA estarán
+                                disponibles próximamente. Por ahora, puedes explorar los prompts y ejemplos, pero la
+                                generación automática aún no está activa en esta web pública.
+                            </div>
+                            <h4 class="font-semibold text-teal-700 mb-2">✨ Prueba con Gemini: Evaluador de Explicaciones
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-2">Escribe tu explicación de un concepto y Gemini te dará
+                                retroalimentación.</p>
+                            <textarea id="feynmanInput"
+                                class="w-full p-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
+                                rows="4"
+                                placeholder="Escribe aquí tu explicación de un concepto (ej. '¿Qué es una API REST?')..."></textarea>
+                            <button onclick="callGeminiFeynman()"
+                                class="mt-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg shadow transition duration-150 ease-in-out">
+                                Evaluar mi Explicación
+                            </button>
+                            <div id="feynmanOutputLoading" class="loading-spinner hidden mt-2"></div>
+                            <div id="feynmanOutput" class="gemini-output mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button
+                        class="w-full text-left p-4 bg-emerald-100 hover:bg-emerald-200 rounded-lg focus:outline-none"
+                        onclick="toggleAccordion(this.nextElementSibling)">
+                        <h3 class="font-semibold text-lg text-emerald-700">2. Creación de Analogías con IA</h3>
+                    </button>
+                    <div class="accordion-content p-4 border border-emerald-200 rounded-b-lg">
+                        <p class="text-gray-700 mb-2">Las analogías conectan ideas nuevas con conceptos familiares. La
+                            IA puede generar o ayudarte a refinar analogías.</p>
+                        <h4 class="font-medium text-gray-800 mt-3 mb-1">Prompt de Ejemplo (Estudiante pide analogías):
+                        </h4>
+                        <pre
+                            class="bg-gray-100 p-2 rounded text-xs whitespace-pre-wrap"><code>Soy un estudiante de informática de segundo año y estoy tratando de entender a fondo el concepto de 'Máquinas Virtuales (VMs)'.
+Por favor, explícame el concepto de una Máquina Virtual utilizando 2 o 3 analogías creativas y claras que me ayuden a entender su funcionamiento, aislamiento de recursos y ventajas.</code></pre>
+                        <div class="gemini-feature-card">
+                            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 mb-4 rounded"
+                                role="alert">
+                                <strong>Funcionalidad en desarrollo:</strong> Las funciones interactivas con IA estarán
+                                disponibles próximamente. Por ahora, puedes explorar los prompts y ejemplos, pero la
+                                generación automática aún no está activa en esta web pública.
+                            </div>
+                            <h4 class="font-semibold text-teal-700 mb-2">✨ Prueba con Gemini: Generador de Analogías
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-2">Ingresa un concepto y Gemini te sugerirá una analogía.
+                            </p>
+                            <input type="text" id="analogyInput"
+                                class="w-full p-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
+                                placeholder="Concepto (ej. 'Contenedores Docker')...">
+                            <button onclick="callGeminiAnalogy()"
+                                class="mt-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg shadow transition duration-150 ease-in-out">
+                                Sugerir Analogía
+                            </button>
+                            <div id="analogyOutputLoading" class="loading-spinner hidden mt-2"></div>
+                            <div id="analogyOutput" class="gemini-output mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="w-full text-left p-4 bg-rose-100 hover:bg-rose-200 rounded-lg focus:outline-none"
+                        onclick="toggleAccordion(this.nextElementSibling)">
+                        <h3 class="font-semibold text-lg text-rose-700">3. Conexión de Conocimientos Nuevos con Previos
+                            usando IA</h3>
+                    </button>
+                    <div class="accordion-content p-4 border border-rose-200 rounded-b-lg">
+                        <p class="text-gray-700 mb-2">El aprendizaje significativo ocurre al integrar nuevos
+                            conocimientos con lo que ya sabes. La IA puede facilitar estas conexiones.</p>
+                        <h4 class="font-medium text-gray-800 mt-3 mb-1">Prompt de Ejemplo (Estudiante pide conectar
+                            conceptos):</h4>
+                        <pre
+                            class="bg-gray-100 p-2 rounded text-xs whitespace-pre-wrap"><code>Estoy estudiando 'Protocolos de Enrutamiento Dinámico' (OSPF, EIGRP). Ya entiendo 'Protocolos de Enrutamiento Estático'.
+Actúa como un profesor experto en redes. Explícame cómo los protocolos dinámicos se construyen sobre los estáticos, sus diferencias, y en qué escenarios uno es preferible al otro, conectándolo con mi conocimiento previo.</code></pre>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-8 text-sm text-gray-600">Estas técnicas, especialmente combinadas, pueden transformar tu manera
+                de estudiar. La IA puede cambiar de rol (alumno, explicador, conector) para adaptarse a tus necesidades.
+            </p>
+        </section>
+
+        <section id="examenes" class="card">
+            <h2 class="section-title text-center">Prepara tus Exámenes con IA</h2>
+            <p class="text-center mb-8 text-gray-700">Transforma la preparación de exámenes de una tarea pasiva a una
+                experiencia activa y personalizada con la ayuda de la IA, incluyendo la generación de preguntas de
+                práctica con Gemini.</p>
+
+            <div class="mb-6">
+                <div class="flex border-b border-gray-300">
+                    <button class="tab-button active" onclick="openTab(event, 'guiasEstudio')">Guías de Estudio</button>
+                    <button class="tab-button" onclick="openTab(event, 'preguntasPractica')">Preguntas de
+                        Práctica</button>
+                    <button class="tab-button" onclick="openTab(event, 'simulacionEval')">Simulación Evaluación</button>
+                </div>
+
+                <div id="guiasEstudio" class="tab-content active">
+                    <h3 class="subsection-title">Crear Guías de Estudio a partir de Apuntes</h3>
+                    <p class="text-gray-700 mb-2">La IA puede procesar tus apuntes, PDFs y transcripciones para generar
+                        resúmenes, mapas conceptuales, glosarios o flashcards.</p>
+                    <h4 class="font-medium text-gray-800 mt-3 mb-1">Prompt de Ejemplo:</h4>
+                    <pre class="bg-gray-100 p-2 rounded text-xs whitespace-pre-wrap"><code>Actúa como un asistente académico. Te proporciono mis apuntes del Módulo 3 sobre 'Modelado Entidad-Relación'.
+Genera una guía de estudio con:
+1. Resumen de puntos clave (Componentes E-R, Mapeo E-R a Relacional, Normalización 1FN-3FN).
+2. Glosario de 10-15 definiciones importantes.
+3. 5 preguntas de autoevaluación.
+Formato: Markdown.</code></pre>
+                </div>
+
+                <div id="preguntasPractica" class="tab-content">
+                    <h3 class="subsection-title">Generar Preguntas de Práctica (Taxonomía de Bloom)</h3>
+                    <p class="text-gray-700 mb-2">La IA puede crear preguntas variadas (opción múltiple, abiertas)
+                        alineadas con niveles de la Taxonomía de Bloom.</p>
+                    <h4 class="font-medium text-gray-800 mt-3 mb-1">Prompt de Ejemplo:</h4>
+                    <pre class="bg-gray-100 p-2 rounded text-xs whitespace-pre-wrap"><code>Rol: Creador de exámenes de IA.
+Tarea: Genera 7 preguntas sobre 'Redes Neuronales Convolucionales (CNNs)'.
+Instrucciones:
+- 2 opción múltiple (Recordar/Comprender).
+- 2 abiertas cortas (Aplicar).
+- 2 de análisis (Analizar).
+- 1 de diseño/evaluación (Crear/Evaluar).
+Proporciona respuestas y explicaciones detalladas.</code></pre>
+                    <div class="gemini-feature-card">
+                        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 mb-4 rounded"
+                            role="alert">
+                            <strong>Funcionalidad en desarrollo:</strong> Las funciones interactivas con IA estarán
+                            disponibles próximamente. Por ahora, puedes explorar los prompts y ejemplos, pero la
+                            generación automática aún no está activa en esta web pública.
+                        </div>
+                        <h4 class="font-semibold text-teal-700 mb-2">✨ Prueba con Gemini: Generador de Preguntas</h4>
+                        <p class="text-sm text-gray-600 mb-2">Ingresa un tema y Gemini generará una pregunta de
+                            práctica.</p>
+                        <input type="text" id="questionTopicInput"
+                            class="w-full p-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
+                            placeholder="Tema (ej. 'Algoritmos de Ordenamiento')...">
+                        <button onclick="callGeminiQuestionGen()"
+                            class="mt-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg shadow transition duration-150 ease-in-out">
+                            Generar Pregunta
+                        </button>
+                        <div id="questionGenOutputLoading" class="loading-spinner hidden mt-2"></div>
+                        <div id="questionGenOutput" class="gemini-output mt-2"></div>
+                    </div>
+                </div>
+
+                <div id="simulacionEval" class="tab-content">
+                    <h3 class="subsection-title">Simular la Evaluación de Respuestas</h3>
+                    <p class="text-gray-700 mb-2">Proporciona tus respuestas a la IA para obtener una evaluación
+                        simulada, identificando puntos fuertes, errores y áreas de mejora.</p>
+                    <h4 class="font-medium text-gray-800 mt-3 mb-1">Prompt de Ejemplo:</h4>
+                    <pre class="bg-gray-100 p-2 rounded text-xs whitespace-pre-wrap"><code>Actúa como profesor de 'Compiladores'. Evalúa mi respuesta.
+Pregunta: "Describe las fases de un compilador y su función. ¿Cuál es la más crítica para optimización y por qué?"
+Mi Respuesta: [Tu respuesta aquí]
+Criterios de Respuesta Ideal: [Tus criterios/rúbrica aquí]
+Evalúa: Aspectos correctos, errores, omisiones, sugerencias de mejora.</code></pre>
+                </div>
+            </div>
+
+            <div class="subsection-title mt-10">Comparativa de Técnicas de IA para Exámenes</div>
+            <div class="chart-container mx-auto h-[400px] md:h-[450px]">
+                <canvas id="examPrepChart"></canvas>
+            </div>
+            <p class="mt-4 text-sm text-gray-600">Este gráfico compara la utilidad percibida de diferentes técnicas de
+                IA para la preparación de exámenes en varias dimensiones como la personalización, la cobertura de temas
+                y la retroalimentación inmediata.</p>
+
+            <div class="subsection-title mt-10">Tabla Comparativa: Técnicas de IA para la Preparación de Exámenes</div>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Técnica de IA</th>
+                            <th>Descripción Detallada</th>
+                            <th>Niveles de Bloom</th>
+                            <th>Beneficios (Informática)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Creación de Guías de Estudio</strong></td>
+                            <td>IA procesa apuntes para generar resúmenes, mapas, glosarios.</td>
+                            <td>Recordar, Comprender</td>
+                            <td>Condensa info técnica, facilita revisión.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Generación de Preguntas</strong></td>
+                            <td>IA crea preguntas variadas alineadas con Bloom.</td>
+                            <td>Todos (según se solicite)</td>
+                            <td>Práctica de algoritmos, depuración, diseño.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Simulación de Evaluación</strong></td>
+                            <td>IA evalúa respuestas del estudiante, da feedback.</td>
+                            <td>Aplicar, Analizar, Evaluar, Crear</td>
+                            <td>Feedback sobre lógica, eficiencia, errores.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="estilo" class="card">
+            <h2 class="section-title text-center">Descubre tu Método de Estudio Ideal con IA</h2>
+            <p class="text-center mb-8 text-gray-700">La IA puede ser tu consejero académico personalizado, ayudándote a
+                entender tus preferencias y a construir planes de estudio efectivos.</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="subsection-title">IA como Orientador Académico</h3>
+                    <p class="text-gray-700 mb-2">Consulta a la IA para obtener consejos sobre estrategias de estudio,
+                        gestión del tiempo, elección de optativas o preparación para el mercado laboral.</p>
+                    <h4 class="font-medium text-gray-800 mt-3 mb-1">Prompt de Ejemplo:</h4>
+                    <pre class="bg-gray-100 p-2 rounded text-xs whitespace-pre-wrap"><code>Actúa como orientador académico y mentor profesional para Ingeniería Informática.
+Soy estudiante de 2º año interesado en sistemas distribuidos y cloud. Aconséjame sobre:
+1. Conectar teoría de paradigmas de programación con práctica.
+2. Habilidades blandas cruciales y cómo desarrollarlas.
+3. Optativas o tecnologías a explorar (Kubernetes, Kafka).
+4. Proyectos de portafolio impactantes.</code></pre>
+                </div>
+                <div>
+                    <h3 class="subsection-title">Crear un Plan de Estudio Personalizado</h3>
+                    <p class="text-gray-700 mb-2">La IA puede diseñar planes detallados que distribuyen tu tiempo e
+                        incorporan técnicas como la repetición espaciada y el recuerdo activo.</p>
+                    <h4 class="font-medium text-gray-800 mt-3 mb-1">Prompt de Ejemplo:</h4>
+                    <pre
+                        class="bg-gray-100 p-2 rounded text-xs whitespace-pre-wrap"><code>Actúa como coach académico. Crea un plan de estudio de 4 semanas para mis finales de:
+- Matemática Discreta (Lógica, Conjuntos, Grafos)
+- Arquitectura de Computadores (CPU, Memoria, Ensamblador)
+- POO Java (Herencia, Polimorfismo, Colecciones)
+Incluye mi disponibilidad, preferencias (visual, práctico), y técnicas como repetición espaciada y práctica activa. Formato: tabla semanal.</code></pre>
+                </div>
+            </div>
+
+            <div class="subsection-title mt-10">Identificar Estilo de Aprendizaje (VARK) con IA</div>
+            <p class="text-gray-700 mb-4">Comprender tus preferencias (Visual, Auditivo, Lecto-escritor, Kinestésico)
+                puede ayudarte a adaptar tus estudios. La IA puede guiarte en este proceso.</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                <div id="vark-visual" class="vark-card" onclick="selectVARK('visual')">
+                    <div class="vark-icon">👁️</div>
+                    <h4 class="font-semibold">Visual</h4>
+                </div>
+                <div id="vark-auditory" class="vark-card" onclick="selectVARK('auditory')">
+                    <div class="vark-icon">👂</div>
+                    <h4 class="font-semibold">Auditivo</h4>
+                </div>
+                <div id="vark-readwrite" class="vark-card" onclick="selectVARK('readwrite')">
+                    <div class="vark-icon">✍️</div>
+                    <h4 class="font-semibold">Lecto-escritor</h4>
+                </div>
+                <div id="vark-kinesthetic" class="vark-card" onclick="selectVARK('kinesthetic')">
+                    <div class="vark-icon">🖐️</div>
+                    <h4 class="font-semibold">Kinestésico</h4>
+                </div>
+            </div>
+            <div id="vark-info" class="p-4 bg-gray-50 rounded-lg min-h-[150px]">
+                <p class="text-gray-600">Selecciona un estilo para ver cómo la IA puede ayudarte.</p>
+            </div>
+            <h4 class="font-medium text-gray-800 mt-6 mb-1">Prompt de Ejemplo para exploración VARK:</h4>
+            <pre class="bg-gray-100 p-2 rounded text-xs whitespace-pre-wrap"><code>Explícame el modelo VARK y cómo se manifiesta cada preferencia en informática.
+Luego, hazme 7-10 preguntas para ayudarme a identificar mis preferencias al estudiar algoritmos, arquitectura de computadoras o lenguajes de programación.
+Finalmente, sugiéreme 3-4 técnicas de estudio o recursos específicos para mis posibles preferencias.</code></pre>
+
+            <div class="subsection-title mt-10">Tabla: Estilos de Aprendizaje VARK y Apoyo de IA (Informática)</div>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Estilo (VARK)</th>
+                            <th>Características Clave (Informática)</th>
+                            <th>Estrategias de IA</th>
+                            <th>Prompt de Ejemplo para IA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Visual</strong></td>
+                            <td>Diagramas, gráficos, demostraciones visuales de código.</td>
+                            <td>Generar diagramas de flujo, mapas conceptuales, visualizaciones de estructuras de datos.
+                            </td>
+                            <td>"Genera un diagrama de flujo para QuickSort y un mapa conceptual de sus componentes."
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Auditivo</strong></td>
+                            <td>Explicaciones verbales, discusiones, podcasts.</td>
+                            <td>Usar Text-to-Speech, pedir explicaciones verbales simuladas, generar preguntas para
+                                debate.</td>
+                            <td>"Explícame verbalmente 'herencia múltiple en C++' y sus problemas. Formula 3 preguntas
+                                para debate."</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lecto-escritor</strong></td>
+                            <td>Textos, manuales, resúmenes, notas detalladas.</td>
+                            <td>Generar resúmenes detallados, transformar diagramas en texto, revisar apuntes.</td>
+                            <td>"Reestructura mis apuntes sobre 'Seguridad en SO' en un informe formal con definiciones
+                                precisas."</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kinestésico</strong></td>
+                            <td>Hacer, experimentar, codificar, depurar, construir.</td>
+                            <td>Generar ejercicios de código, actuar como depurador, proponer proyectos prácticos,
+                                simular escenarios.</td>
+                            <td>"Sugiéreme un proyecto de cliente-servidor simple en Python (chat básico) y dame un
+                                esqueleto de código."</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="conclusion" class="card text-center">
+            <h2 class="section-title">Conclusión: Tu Viaje con la IA</h2>
+            <p class="text-lg mb-4">Dominar la ingeniería de prompts es una habilidad esencial. Te empodera para
+                personalizar tu educación, profundizar tu comprensión y alcanzar tus metas en una era definida por la
+                IA.</p>
+            <p class="text-gray-700 mb-2">Recuerda los principios clave: claridad, contexto, rol, estructura, formato,
+                ejemplos, instrucciones positivas y un proceso iterativo.</p>
+            <p class="text-gray-700 mb-6">Experimenta con las técnicas presentadas, adapta los prompts a tus necesidades
+                y conviértete en un director activo y estratégico en tu interacción con la IA. ¡El futuro del
+                aprendizaje está en tus manos, con la IA como tu aliada!</p>
+            <a href="#inicio"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow transition duration-150 ease-in-out">
+                Volver al Inicio y Explorar de Nuevo
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 text-slate-500 text-sm mt-12">
+        <p><a href="index.html" class="hover:underline">Volver a la Infografía Principal</a></p>
+        <p>&copy; 2025 Guía Interactiva de Prompt Engineering. Basada en el "Informe de Investigación: Creación de un
+            Asistente de Prompts y Estrategias para Estudiantes".</p>
+    </footer>
+
+
+    <script>
+        const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=";
+        const API_KEY = ""; // Intentionally empty, Canvas will provide it.
+
+        async function callGeminiAPI(promptText, outputElementId, loadingElementId) {
+            const outputElement = document.getElementById(outputElementId);
+            const loadingElement = document.getElementById(loadingElementId);
+
+            if (!outputElement || !loadingElement) {
+                console.error("Output or loading element not found for Gemini call.");
+                return;
+            }
+
+            outputElement.textContent = '';
+            outputElement.classList.remove('border-red-500');
+            loadingElement.classList.remove('hidden');
+
+            const chatHistory = [{ role: "user", parts: [{ text: promptText }] }];
+            const payload = { contents: chatHistory };
+
+            try {
+                const response = await fetch(GEMINI_API_URL + API_KEY, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Error from Gemini API:', errorData);
+                    throw new Error(`Error de API: ${response.status} ${response.statusText}. ${errorData?.error?.message || ''}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputElement.textContent = text.trim();
+                } else {
+                    console.error('Respuesta inesperada de Gemini API:', result);
+                    outputElement.textContent = 'No se pudo obtener una respuesta válida de la IA.';
+                    outputElement.classList.add('border-red-500', 'text-red-700');
+                }
+            } catch (error) {
+                console.error('Error al llamar a Gemini API:', error);
+                outputElement.textContent = `Error: ${error.message}. Por favor, inténtalo de nuevo más tarde.`;
+                outputElement.classList.add('border-red-500', 'text-red-700');
+            } finally {
+                loadingElement.classList.add('hidden');
+            }
+        }
+
+        function callGeminiFeynman() {
+            const userInput = document.getElementById('feynmanInput').value;
+            if (!userInput.trim()) {
+                document.getElementById('feynmanOutput').textContent = 'Por favor, escribe tu explicación primero.';
+                return;
+            }
+            const prompt = `Actúa como un revisor experto en la técnica Feynman. Un estudiante ha escrito la siguiente explicación de un concepto para un principiante. Evalúa la claridad, simplicidad y posibles puntos de confusión. Ofrece retroalimentación constructiva. La explicación del estudiante es: "${userInput}"`;
+            callGeminiAPI(prompt, 'feynmanOutput', 'feynmanOutputLoading');
+        }
+
+        function callGeminiAnalogy() {
+            const userInput = document.getElementById('analogyInput').value;
+            if (!userInput.trim()) {
+                document.getElementById('analogyOutput').textContent = 'Por favor, ingresa un concepto.';
+                return;
+            }
+            const prompt = `Soy un estudiante tratando de entender el concepto de "${userInput}". Por favor, sugiéreme una analogía clara y creativa para ayudarme a comprenderlo mejor. Explica brevemente la analogía.`;
+            callGeminiAPI(prompt, 'analogyOutput', 'analogyOutputLoading');
+        }
+
+        function callGeminiQuestionGen() {
+            const userInput = document.getElementById('questionTopicInput').value;
+            if (!userInput.trim()) {
+                document.getElementById('questionGenOutput').textContent = 'Por favor, ingresa un tema.';
+                return;
+            }
+            const prompt = `Actúa como un creador de preguntas de examen para un estudiante universitario de informática. Genera una pregunta de práctica (puede ser de opción múltiple con 3-4 opciones y la respuesta correcta, o una pregunta abierta corta) sobre el tema: "${userInput}". Si es de opción múltiple, indica la respuesta correcta. Si es abierta, proporciona una respuesta modelo concisa.`;
+            callGeminiAPI(prompt, 'questionGenOutput', 'questionGenOutputLoading');
+        }
+
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                if (mobileMenu.classList.contains('hidden') === false) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Accordion toggle
+        function toggleAccordion(element) {
+            const content = element.classList.contains('accordion-content') ? element : element.querySelector('.accordion-content') || element.nextElementSibling;
+            if (content && content.classList.contains('accordion-content')) {
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                    content.style.maxHeight = '0px';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            }
+        }
+
+        document.querySelectorAll('#fundamentos .interactive-card .accordion-content').forEach(content => {
+            content.style.maxHeight = '0px';
+        });
+        document.querySelectorAll('#aprender .accordion-content').forEach(content => {
+            content.style.maxHeight = '0px';
+        });
+
+
+        // Tabs
+        function openTab(event, tabName) {
+            let i, tabcontent, tablinks;
+            const parent = event.target.closest('.card');
+            tabcontent = parent.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = parent.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            parent.querySelector('#' + tabName).style.display = "block";
+            parent.querySelector('#' + tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+        document.querySelectorAll('.tab-button.active').forEach(button => {
+            const tabName = button.getAttribute('onclick').match(/'([^']+)'/)[1];
+            const parent = button.closest('.card');
+            if (parent.querySelector('#' + tabName)) {
+                parent.querySelector('#' + tabName).style.display = "block";
+            }
+        });
+
+        const CHART_COLORS_PALETTE = {
+            blue: '#3B82F6',
+            emerald: '#10B981',
+            indigo: '#6366F1',
+            rose: '#F43F5E',
+            amber: '#F59E0B',
+            lightGray: '#D1D5DB',
+            darkGray: '#374151'
+        };
+
+        function wrapChartLabels(labels, maxWidth = 16) {
+            return labels.map(label => {
+                if (typeof label !== 'string' || label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            });
+        }
+
+        const chartTooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const commonChartOptionsDefinition = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: chartTooltipTitleCallback
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: CHART_COLORS_PALETTE.darkGray,
+                        font: { size: 12 }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: CHART_COLORS_PALETTE.darkGray, font: { size: 10 } },
+                    grid: { color: CHART_COLORS_PALETTE.lightGray }
+                },
+                y: {
+                    ticks: { color: CHART_COLORS_PALETTE.darkGray, font: { size: 10 } },
+                    grid: { color: CHART_COLORS_PALETTE.lightGray },
+                    beginAtZero: true
+                }
+            }
+        };
+
+        const examPrepCtxInstance = document.getElementById('examPrepChart');
+        if (examPrepCtxInstance) {
+            const examPrepLabelsData = wrapChartLabels(['Creación Guías', 'Generación Preguntas', 'Simulación Evaluación']);
+            new Chart(examPrepCtxInstance, {
+                type: 'bar',
+                data: {
+                    labels: examPrepLabelsData,
+                    datasets: [
+                        {
+                            label: 'Personalización',
+                            data: [7, 8, 9],
+                            backgroundColor: CHART_COLORS_PALETTE.blue,
+                        },
+                        {
+                            label: 'Cobertura Bloom',
+                            data: [6, 9, 8],
+                            backgroundColor: CHART_COLORS_PALETTE.emerald,
+                        },
+                        {
+                            label: 'Feedback Inmediato',
+                            data: [5, 7, 9],
+                            backgroundColor: CHART_COLORS_PALETTE.indigo,
+                        }
+                    ]
+                },
+                options: {
+                    ...commonChartOptionsDefinition,
+                    plugins: { ...commonChartOptionsDefinition.plugins, title: { display: true, text: 'Efectividad Percibida de Técnicas de IA para Exámenes', color: CHART_COLORS_PALETTE.darkGray, font: { size: 14 } } }
+                }
+            });
+        }
+
+        const varkInfoContainerElement = document.getElementById('vark-info');
+        const varkCardsData = {
+            visual: {
+                title: "Visual 👁️",
+                text: "Los aprendices visuales prefieren diagramas, gráficos y demostraciones. La IA puede generar diagramas de flujo para algoritmos, mapas conceptuales de arquitecturas o transformar descripciones textuales en esquemas visuales.",
+                prompt: "Prompt Ejemplo: 'Estoy estudiando el algoritmo QuickSort. Genera un diagrama de flujo paso a paso y un mapa conceptual de sus componentes (pivote, partición, recursión).'"
+            },
+            auditory: {
+                title: "Auditivo 👂",
+                text: "Los aprendices auditivos se benefician de explicaciones verbales y discusiones. La IA puede usarse con Text-to-Speech, simular explicaciones o generar preguntas para debate.",
+                prompt: "Prompt Ejemplo: 'Explícame verbalmente (o genera texto para TTS) el concepto de herencia múltiple en C++ y sus problemas. Luego, formula 3 preguntas para un debate.'"
+            },
+            readwrite: {
+                title: "Lecto-escritor ✍️",
+                text: "Prefieren leer textos y escribir resúmenes. La IA puede generar resúmenes detallados, transformar diagramas en texto o revisar apuntes.",
+                prompt: "Prompt Ejemplo: 'Reestructura mis apuntes sobre Seguridad en SO en un informe formal con definiciones precisas y una comparación de modelos de seguridad.'"
+            },
+            kinesthetic: {
+                title: "Kinestésico 🖐️",
+                text: "Aprenden haciendo, experimentando y codificando. La IA puede generar ejercicios de código, actuar como depurador o proponer proyectos prácticos.",
+                prompt: "Prompt Ejemplo: 'Sugiéreme un proyecto de cliente-servidor simple en Python (chat básico) y dame un esqueleto de código. Luego, plantéame desafíos para extenderlo.'"
+            }
+        };
+
+        function selectVARK(style) {
+            document.querySelectorAll('.vark-card').forEach(card => card.classList.remove('active'));
+            document.getElementById(`vark-${style}`).classList.add('active');
+
+            const info = varkCardsData[style];
+            varkInfoContainerElement.innerHTML = `
+                <h4 class="font-semibold text-lg text-blue-600 mb-2">${info.title}</h4>
+                <p class="text-gray-700 mb-3">${info.text}</p>
+                <p class="text-sm text-gray-500 bg-gray-100 p-2 rounded">${info.prompt}</p>
+            `;
+        }
+        varkInfoContainerElement.innerHTML = `<p class="text-gray-600">Selecciona un estilo de aprendizaje VARK de las tarjetas de arriba para ver cómo la IA puede ofrecer apoyo específico, incluyendo ejemplos de prompts que puedes usar.</p>`;
+
+        const fullGemPromptTextToCopy = `# Fase 1: Definición del Rol y Objetivo del "Gem"
+Actúa como 'Gem', un Asistente Experto en Ingeniería de Prompts. Tu misión es ayudarme a construir un prompt perfecto y highly efectivo para interactuar con un modelo de lenguaje grande (LLM). Me guiarás paso a paso, haciéndome preguntas clave para asegurar que el prompt final sea claro, específico, contextualizado y optimizado para mi tarea. Al final de nuestra conversación, me proporcionarás el prompt completo que hemos construido juntos, explicando brevemente por qué cada componente contribuye a su efectividad.
+
+# Fase 2: Recopilación de Información Inicial (Preguntas al Usuario)
+Para comenzar, por favor, responde a las siguientes preguntas:
+
+1.  **Tarea Principal y Objetivo:**
+    * ¿Cuál es la tarea principal que quieres que el LLM realice? (ej. generar texto, responder preguntas, resumir, traducir, generar código, etc.)
+    * ¿Cuál es el objetivo fundamental que buscas alcanzar con la respuesta del LLM?
+
+2.  **Audiencia y Tono:**
+    * ¿Quién es la audiencia objetivo para la respuesta del LLM? (ej. un profesor, un compañero de estudios, un cliente, tú mismo, un niño)
+    * ¿Qué tono y estilo general debería tener la respuesta? (ej. formal, informal, académico, técnico, persuasivo, creativo, didáctico, conciso, detallado)
+
+3.  **Formato de Salida Deseado:**
+    * ¿Tienes algún formato específico en mente para la salida del LLM? (ej. un ensayo de X párrafos, una lista de viñetas, código en Python, un email, un script, una tabla Markdown, JSON, un diálogo, etc.) Si es así, descríbelo con el mayor detalle posible.
+
+# Fase 3: Profundización en los Principios Clave (Guía Iterativa)
+Excelente. Ahora, vamos a refinar los detalles para asegurar que el prompt sea lo más efectivo posible. Por favor, considera y responde a lo siguiente:
+
+4.  **Contexto Necesario:**
+    * ¿Qué información de fondo, datos específicos, documentos, o ejemplos previos necesita el LLM para entender completamente tu solicitud y generar una respuesta relevante y precisa? (Puedes proporcionar el contexto aquí, o describir qué tipo de contexto debería incluirse en el prompt final. Si es un texto largo, puedes indicar "" y luego reemplazarlo en el prompt final).
+
+5.  **Claridad y Especificidad de las Instrucciones:**
+    * ¿Hay algún detalle, sub-tarea, paso específico o instrucción particular que debamos añadir para que el LLM no tenga dudas sobre lo que se espera?
+    * ¿Podemos ser más precisos en algún aspecto de la tarea o el objetivo? ¿Hay alguna ambigüedad que debamos eliminar?
+
+6.  **Asignación de Rol para el LLM (Persona):**
+    * ¿Sería beneficioso que el LLM adopte un rol o persona específica para esta tarea? (ej. 'Actúa como un experto en ciberseguridad con 10 años de experiencia', 'Eres un tutor de física cuántica explicando a un novato', 'Compórtate como un personaje histórico específico'). Si es así, ¿cuál sería ese rol y qué características debería tener?
+
+7.  **Uso de Ejemplos (Few-Shot Prompting):**
+    * Si la tarea es compleja, el formato de salida es muy particular, o quieres un estilo muy específico, ¿sería útil incluir uno o dos ejemplos de cómo se vería una respuesta ideal (o una parte de ella)? Si es así, por favor, proporciónalos o descríbelos. (Esto ayuda al LLM a "aprender en contexto").
+
+8.  **Instrucciones Positivas:**
+    * Al definir las instrucciones, ¿estamos enfocándonos en decir claramente al LLM *qué hacer* en lugar de solo *qué no hacer*? (Generalmente, las instrucciones positivas son más efectivas).
+
+9.  **Estructura y Delimitadores Internos del Prompt:**
+    * Para organizar la información dentro del prompt final (especialmente si hay múltiples partes como instrucciones, contexto, datos de entrada y ejemplos), ¿consideras útil usar delimitadores claros como '### Instrucción ###', '---Contexto---', '<ejemplo></ejemplo>', etc.? Esto ayuda al LLM a procesar mejor las distintas secciones.
+
+# Fase 4: Consideraciones Adicionales y Refinamiento
+Pensemos en algunos aspectos más para optimizar el prompt:
+
+10. **Restricciones y Limitaciones:**
+    * ¿Hay alguna restricción importante que el LLM deba considerar? (ej. longitud máxima/mínima de la respuesta, evitar ciertos temas o palabras, enfocarse en un aspecto particular, no usar información posterior a una fecha específica).
+
+11. **Proceso de Razonamiento (Chain-of-Thought):**
+    * Para tareas que requieren razonamiento complejo (ej. problemas matemáticos, análisis lógicos), ¿quieres que el LLM 'piense paso a paso' o desglose su razonamiento antes de dar la respuesta final? (Esto se conoce como Chain-of-Thought prompting y puede mejorar la precisión).
+
+12. **Información Adicional Crucial:**
+    * Basado en todo lo que hemos discutido, ¿hay algo más (por pequeño que parezca) que creas que es crucial para el éxito de este prompt y que no hayamos cubierto?
+
+# Fase 5: Construcción del Prompt Final y Ciclo de Retroalimentación
+Gracias por toda esta valiosa información. Con base en tus respuestas, construiré ahora un borrador del prompt optimizado.
+
+[Aquí Gem esperará las respuestas del usuario a las preguntas anteriores. Una vez recibidas, Gem analizará la información y procederá a construir el prompt.]
+
+Cuando esté listo, te presentaré el prompt. Por favor, revísalo cuidadosamente. Si hay algo que quieras cambiar, añadir, eliminar o aclarar, házmelo saber. Podemos iterar sobre este prompt tantas veces como sea necesario hasta que estés completamente satisfecho con él.
+
+Recuerda: incluso un prompt "perfecto" puede necesitar ajustes después de probarlo con el LLM. Si los resultados no son los esperados, podemos analizar la respuesta del LLM y refinar el prompt juntos.
+
+Estoy listo para recibir tus respuestas a las preguntas 1, 2 y 3 para comenzar.`;
+
+        function copyGemPrompt() {
+            const textarea = document.createElement('textarea');
+            textarea.value = fullGemPromptTextToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                document.getElementById('copyMessage').classList.remove('hidden');
+                setTimeout(() => {
+                    document.getElementById('copyMessage').classList.add('hidden');
+                }, 2000);
+            } catch (err) {
+                console.error('Error al copiar el prompt: ', err);
+                alert('Error al copiar. Por favor, copia manually el prompt del informe.');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        const sectionsToObserve = document.querySelectorAll("main section[id], header[id]");
+        const navLinksElements = document.querySelectorAll("nav a.nav-link");
+
+        window.addEventListener("scroll", () => {
+            let currentSectionId = "";
+            sectionsToObserve.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 80) {
+                    currentSectionId = section.getAttribute("id");
+                }
+            });
+
+            navLinksElements.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${currentSectionId}`) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

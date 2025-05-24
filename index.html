@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: El Panorama de las Herramientas de IA para Codificación en 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #4B5563;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FF6B6B;
+        }
+
+        .kpi-label {
+            font-size: 1rem;
+            color: #4B5563;
+            margin-top: 0.25rem;
+        }
+
+        .flowchart-step {
+            background-color: #FF6B6B;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            text-align: center;
+            min-width: 180px;
+        }
+
+        .flowchart-arrow {
+            font-size: 2rem;
+            color: #FF6B6B;
+            margin: 0 1rem;
+            align-self: center;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            color: white;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-gradient-to-r from-[#FF6B6B] to-[#FFA500] text-white p-6 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl md:text-4xl font-bold">El Panorama de las Herramientas de IA para Codificación en 2025
+            </h1>
+            <p class="text-sm mt-2">Una investigación por Brandolino Carlos Miyen</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 pt-12">
+
+        <section id="links" class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="card text-center">
+                    <h3 class="text-xl font-semibold mb-3 text-[#FF6B6B]">Lee la Investigación Completa</h3>
+                    <p class="text-slate-600 mb-4">Accede al documento detallado con el análisis exhaustivo de todas las
+                        herramientas.</p>
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vThhLV1VBgeWF7okr1P2QEED7capC9vWABwLShOErqzUGmyLSSCBRgQ10FYRpQnuKqOPhilX3ODsyWf/pub" target="_blank" rel="noopener"
+                        class="action-button bg-[#FF6B6B] hover:bg-[#ff5252]">Ver Investigación</a>
+                </div>
+                <div class="card text-center">
+                    <h3 class="text-xl font-semibold mb-3 text-[#FFA500]">Participa en la Encuesta</h3>
+                    <p class="text-slate-600 mb-4">Comparte tu propia experiencia y conocimiento sobre el uso de estas
+                        herramientas.</p>
+                    <a href="https://forms.gle/d4fgZnT2ybJTU4iz8" target="_blank" rel="noopener"
+                        class="action-button bg-[#FFA500] hover:bg-[#ff9500]">Ir a la Encuesta</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 text-center">
+            <p class="text-lg md:text-xl text-slate-700 max-w-3xl mx-auto">
+                La inteligencia artificial está transformando radicalmente el desarrollo de software. En 2025, un
+                vibrante ecosistema de herramientas de IA asiste a los programadores, aumentando la productividad y
+                redefiniendo los flujos de trabajo. Esta infografía explora las capacidades, tendencias y el impacto de
+                los principales actores en este campo dinámico.
+            </p>
+        </section>
+
+        <section id="gigantes" class="mb-16">
+            <h2 class="section-title">Los Gigantes del Código IA: Líderes del Mercado</h2>
+            <p class="section-subtitle">
+                Las grandes tecnológicas y startups especializadas compiten con soluciones cada vez más sofisticadas,
+                integrando IA profundamente en el ciclo de vida del desarrollo.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FF6B6B]">🐙 GitHub Copilot</h3>
+                    <p class="text-slate-600 text-sm mb-3">Impulsado por OpenAI y Microsoft</p>
+                    <p class="text-slate-700">Destaca por su <strong class="text-[#FF6B6B]">integración profunda en el
+                            ecosistema GitHub</strong> y sus avanzadas <strong class="text-[#FF6B6B]">capacidades
+                            agénticas</strong> como Copilot Workspace y el nuevo agente de codificación, que pueden
+                        gestionar tareas de desarrollo de principio a fin.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FF6B6B]">💬 ChatGPT (Modelos OpenAI)</h3>
+                    <p class="text-slate-600 text-sm mb-3">Desarrollado por OpenAI</p>
+                    <p class="text-slate-700">Sobresale por la <strong class="text-[#FF6B6B]">potencia de sus modelos
+                            subyacentes (GPT-4.5, o1)</strong>, su versatilidad más allá del código y una API flexible
+                        que permite integraciones personalizadas. El agente Codex (preview) promete mayor autonomía.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FF6B6B]">🧠 Claude (Anthropic)</h3>
+                    <p class="text-slate-600 text-sm mb-3">Creado por Anthropic</p>
+                    <p class="text-slate-700">Conocido por su <strong class="text-[#FF6B6B]">fuerte capacidad de
+                            razonamiento</strong>, manejo de <strong class="text-[#FF6B6B]">contextos extensos</strong>
+                        (hasta 200K+ tokens) y un enfoque en la seguridad. Claude Code (CLI) permite interacción directa
+                        con bases de código. Obtuvo un <strong class="text-[#FF6B6B]">70.3% en SWE-Bench</strong>.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FFA500]">🔍 Cody (Sourcegraph)</h3>
+                    <p class="text-slate-600 text-sm mb-3">De Sourcegraph</p>
+                    <p class="text-slate-700">Su principal fortaleza es la <strong class="text-[#FFA500]">comprensión
+                            del contexto de toda la base de código</strong>, gracias a su integración con la búsqueda de
+                        Sourcegraph. Ofrece elección de LLMs y potentes capacidades de refactorización.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FFA500]">☁️ Amazon Q Developer</h3>
+                    <p class="text-slate-600 text-sm mb-3">Parte del ecosistema AWS</p>
+                    <p class="text-slate-700">Se distingue por su <strong class="text-[#FFA500]">profunda integración
+                            con AWS</strong>, un fuerte enfoque en <strong class="text-[#FFA500]">seguridad y
+                            cumplimiento</strong>, y agentes especializados para tareas de desarrollo y transformación
+                        de código en AWS.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#FFA500]">✨ Google Gemini Code Assist</h3>
+                    <p class="text-slate-600 text-sm mb-3">Impulsado por Google</p>
+                    <p class="text-slate-700">Potenciado por el modelo <strong class="text-[#FFA500]">Gemini
+                            2.5</strong>, destaca por su próxima <strong class="text-[#FFA500]">ventana de contexto de 2
+                            millones de tokens</strong> y su integración con el ecosistema de Google Cloud. Herramientas
+                        como Jules y Stitch expanden su alcance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="recursos" class="mb-16">
+            <h2 class="section-title">Recursos y Links Útiles</h2>
+            <p class="section-subtitle">
+                Aquí tienes algunos enlaces para empezar a explorar estas herramientas y obtener beneficios como
+                estudiante.
+            </p>
+            <div class="max-w-2xl mx-auto card">
+                <ul class="space-y-4">
+                    <li>
+                        <a href="instructivo.html" class="font-semibold text-[#FF6B6B] hover:underline">🚀 Guía de
+                            Inicio: Cómo Usar tu Primer Asistente de IA &rarr;</a>
+                        <p class="text-sm text-slate-600">Un instructivo paso a paso que creamos para este proyecto,
+                            ideal para empezar con VS Code y Copilot.</p>
+                    </li>
+                    <li>
+                        <a href="https://education.github.com/pack" target="_blank" rel="noopener"
+                            class="font-semibold text-[#FFA500] hover:underline">🎓 GitHub Student Developer Pack
+                            &rarr;</a>
+                        <p class="text-sm text-slate-600">Accede a GitHub Copilot Pro y muchas otras herramientas de
+                            forma gratuita.</p>
+                    </li>
+                    <li>
+                        <a href="https://code.visualstudio.com/" target="_blank" rel="noopener"
+                            class="font-semibold text-[#FFD700] hover:underline">💻 Descargar Visual Studio Code
+                            &rarr;</a>
+                        <p class="text-sm text-slate-600">El IDE más popular y con la mayor cantidad de extensiones para
+                            asistentes de IA.</p>
+                    </li>
+                    <li><a href="https://replit.com/site/teams-for-education" target="_blank" rel="noopener"
+                            class="font-semibold text-[#FFD700] hover:underline">🌐 Replit for Education &rarr;</a>
+                        <p class="text-sm text-slate-600">Un entorno de desarrollo basado en navegador, ideal para
+                            empezar a programar rápidamente.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="text-center p-6 bg-slate-800 text-slate-300 text-sm mt-12 rounded-lg">
+            <p>Un proyecto de investigación y visualización de [Aquí va tu Nombre Completo].</p>
+            <p>Mayo 2025, Puerto Madryn, Chubut. UNPSJB.</p>
+        </footer>
+    </main>
+
+    <script>
+        const wrapLabel = (label, maxLength = 16) => {
+            if (typeof label !== 'string') return label;
+            const words = label.split(' ');
+            let currentLine = '';
+            const lines = [];
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines.length > 1 ? lines : lines[0];
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const CHART_COLORS = {
+            accent1: '#FF6B6B',
+            accent2: '#FFA500',
+            accent3: '#FFD700',
+            accent4: '#FF8C42',
+            textPrimary: '#1F2937',
+            gridColor: '#E5E7EB'
+        };
+
+        // Chart: Open Source Params
+        const openSourceParamsCtx = document.getElementById('openSourceParamsChart');
+        if (openSourceParamsCtx) {
+            new Chart(openSourceParamsCtx, {
+                type: 'bar',
+                data: {
+                    labels: [wrapLabel('StarCoder2'), wrapLabel('Code Llama'), wrapLabel('DeepSeek Coder')],
+                    datasets: [{
+                        label: 'Máx. Parámetros (Miles de Millones)',
+                        data: [15, 70, 33],
+                        backgroundColor: [CHART_COLORS.accent1, CHART_COLORS.accent2, CHART_COLORS.accent3],
+                        borderColor: [CHART_COLORS.accent1, CHART_COLORS.accent2, CHART_COLORS.accent3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Parámetros (Miles de Millones)', color: CHART_COLORS.textPrimary },
+                            ticks: { color: CHART_COLORS.textPrimary },
+                            grid: { color: CHART_COLORS.gridColor }
+                        },
+                        y: {
+                            ticks: { color: CHART_COLORS.textPrimary, font: { size: 10 } },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            backgroundColor: '#2A2A2A',
+                            titleColor: '#FFFFFF',
+                            bodyColor: '#FFFFFF',
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart: IDE Integration
+        const ideIntegrationCtx = document.getElementById('ideIntegrationChart');
+        if (ideIntegrationCtx) {
+            new Chart(ideIntegrationCtx, {
+                type: 'bar',
+                data: {
+                    labels: [wrapLabel('VS Code'), wrapLabel('JetBrains IDEs'), wrapLabel('Eclipse'), wrapLabel('Visual Studio')],
+                    datasets: [{
+                        label: 'Nº Herramientas con Soporte',
+                        data: [7, 6, 4, 4],
+                        backgroundColor: [CHART_COLORS.accent1, CHART_COLORS.accent2, CHART_COLORS.accent3, CHART_COLORS.accent4],
+                        borderColor: [CHART_COLORS.accent1, CHART_COLORS.accent2, CHART_COLORS.accent3, CHART_COLORS.accent4],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Cantidad de Herramientas', color: CHART_COLORS.textPrimary },
+                            ticks: { color: CHART_COLORS.textPrimary, stepSize: 1 },
+                            grid: { color: CHART_COLORS.gridColor }
+                        },
+                        y: {
+                            ticks: { color: CHART_COLORS.textPrimary, font: { size: 10 } },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            backgroundColor: '#2A2A2A',
+                            titleColor: '#FFFFFF',
+                            bodyColor: '#FFFFFF',
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart: HumanEval
+        const humanEvalCtx = document.getElementById('humanEvalChart');
+        if (humanEvalCtx) {
+            new Chart(humanEvalCtx, {
+                type: 'bar',
+                data: {
+                    labels: [wrapLabel('LLMDebugger (OpenAI o1)'), wrapLabel('OpenAI o4-mini'), wrapLabel('Gemini 2.5 Pro'), wrapLabel('Claude 3.5 Sonnet')],
+                    datasets: [{
+                        label: 'HumanEval Pass@1 (%)',
+                        data: [99.4, 93.4, 92.0, 92.0],
+                        backgroundColor: [CHART_COLORS.accent1, CHART_COLORS.accent2, CHART_COLORS.accent3, CHART_COLORS.accent4],
+                        borderColor: [CHART_COLORS.accent1, CHART_COLORS.accent2, CHART_COLORS.accent3, CHART_COLORS.accent4],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 85,
+                            max: 100,
+                            title: { display: true, text: 'Puntuación Pass@1 (%)', color: CHART_COLORS.textPrimary },
+                            ticks: { color: CHART_COLORS.textPrimary },
+                            grid: { color: CHART_COLORS.gridColor }
+                        },
+                        x: {
+                            ticks: { color: CHART_COLORS.textPrimary, font: { size: 10 } },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            backgroundColor: '#2A2A2A',
+                            titleColor: '#FFFFFF',
+                            bodyColor: '#FFFFFF',
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart: Developer Adoption
+        const developerAdoptionCtx = document.getElementById('developerAdoptionChart');
+        if (developerAdoptionCtx) {
+            new Chart(developerAdoptionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Usa IA Generativa Diariamente', 'No Usa IA Generativa'],
+                    datasets: [{
+                        label: 'Adopción por Desarrolladores',
+                        data: [76, 24],
+                        backgroundColor: [CHART_COLORS.accent1, CHART_COLORS.gridColor],
+                        borderColor: ['#FFFFFF', '#FFFFFF'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: CHART_COLORS.textPrimary } },
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            backgroundColor: '#2A2A2A',
+                            titleColor: '#FFFFFF',
+                            bodyColor: '#FFFFFF',
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart: Market Growth
+        const marketGrowthCtx = document.getElementById('marketGrowthChart');
+        if (marketGrowthCtx) {
+            new Chart(marketGrowthCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2024', '2026', '2028', '2030'],
+                    datasets: [{
+                        label: 'Mercado Global (Miles de Millones USD)',
+                        data: [6.7, 12.5, 19.0, 25.7], // Estimaciones intermedias para una curva más suave
+                        fill: true,
+                        backgroundColor: 'rgba(255, 107, 107, 0.2)', // Accent1 con transparencia
+                        borderColor: CHART_COLORS.accent1,
+                        tension: 0.3,
+                        pointBackgroundColor: CHART_COLORS.accent1,
+                        pointBorderColor: '#FFFFFF',
+                        pointHoverBackgroundColor: '#FFFFFF',
+                        pointHoverBorderColor: CHART_COLORS.accent1,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Miles de Millones USD', color: CHART_COLORS.textPrimary },
+                            ticks: { color: CHART_COLORS.textPrimary },
+                            grid: { color: CHART_COLORS.gridColor }
+                        },
+                        x: {
+                            ticks: { color: CHART_COLORS.textPrimary },
+                            grid: { color: CHART_COLORS.gridColor }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            backgroundColor: '#2A2A2A',
+                            titleColor: '#FFFFFF',
+                            bodyColor: '#FFFFFF',
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
