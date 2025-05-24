@@ -224,6 +224,16 @@
             margin: 0.5rem auto;
         }
 
+        .action-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            color: white;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
@@ -295,13 +305,34 @@
             <p class="text-md text-gray-600">Navega usando el menú superior o simplemente desplázate hacia abajo.</p>
         </section>
 
+        <section id="links" class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="card text-center">
+                    <h3 class="text-xl font-semibold mb-3 text-[#FF6B6B]">Lee la Investigación Completa</h3>
+                    <p class="text-slate-600 mb-4">Accede al documento detallado con el análisis exhaustivo de todas las
+                        herramientas.</p>
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vR7AbEhZwoqHZzFsVuQV9jKHp0olodJPKAsg_KmHTDHqJczAXNCw8GSRnyilXgl8obTfFbEk1gj2HvQ/pub"
+                        target="_blank" rel="noopener" class="action-button bg-[#FF6B6B] hover:bg-[#ff5252]">Ver
+                        Investigación</a>
+                </div>
+                <div class="card text-center">
+                    <h3 class="text-xl font-semibold mb-3 text-[#FFA500]">Participa en la Encuesta</h3>
+                    <p class="text-slate-600 mb-4">Comparte tu propia experiencia y conocimiento sobre el uso de estas
+                        herramientas.</p>
+                    <a href="https://forms.gle/d4fgZnT2ybJTU4iz8" target="_blank" rel="noopener"
+                        class="action-button bg-[#FFA500] hover:bg-[#ff9500]">Ir a la Encuesta</a>
+                </div>
+            </div>
+        </section>
+
         <section id="fundamentos" class="card">
             <h2 class="section-title text-center">Fundamentos del Prompting Efectivo</h2>
             <p class="text-center mb-8 text-gray-700">La calidad de la respuesta de una IA depende directamente de la
                 calidad de tu prompt. Aquí exploramos los 8 pilares esenciales para construir instrucciones claras y
                 precisas.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                <button type="button" class="interactive-card p-4 border rounded-lg cursor-pointer text-left w-full"
+                    onclick="toggleAccordion(this)" aria-expanded="false">
                     <h3 class="font-semibold text-lg text-blue-600 mb-2">1. Claridad y Especificidad</h3>
                     <div class="accordion-content">
                         <p class="text-sm text-gray-600">Sé directo y detallado. Evita ambigüedades. Define el alcance
@@ -309,8 +340,9 @@
                         <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> "Genera un script en Python 3
                             para ordenar una lista de tuplas por su segundo elemento en orden descendente."</p>
                     </div>
-                </div>
-                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                </button>
+                <button type="button" class="interactive-card p-4 border rounded-lg cursor-pointer text-left w-full"
+                    onclick="toggleAccordion(this)" aria-expanded="false">
                     <h3 class="font-semibold text-lg text-blue-600 mb-2">2. Contexto</h3>
                     <div class="accordion-content">
                         <p class="text-sm text-gray-600">Provee información de fondo relevante, datos necesarios o el
@@ -319,8 +351,9 @@
                             memoria limitada (ej. un microcontrolador), ¿cuál sería un algoritmo de ordenamiento
                             eficiente para un array pequeño?"</p>
                     </div>
-                </div>
-                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                </button>
+                <button type="button" class="interactive-card p-4 border rounded-lg cursor-pointer text-left w-full"
+                    onclick="toggleAccordion(this)" aria-expanded="false">
                     <h3 class="font-semibold text-lg text-blue-600 mb-2">3. Asignación de Rol</h3>
                     <div class="accordion-content">
                         <p class="text-sm text-gray-600">Indica a la IA que actúe como un experto o una persona
@@ -329,8 +362,9 @@
                             DevOps. Describe los pasos para desplegar una aplicación web simple usando Docker y
                             Kubernetes."</p>
                     </div>
-                </div>
-                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                </button>
+                <button type="button" class="interactive-card p-4 border rounded-lg cursor-pointer text-left w-full"
+                    onclick="toggleAccordion(this)" aria-expanded="false">
                     <h3 class="font-semibold text-lg text-blue-600 mb-2">4. Estructura y Delimitadores</h3>
                     <div class="accordion-content">
                         <p class="text-sm text-gray-600">Organiza el prompt en secciones claras usando delimitadores
@@ -338,8 +372,11 @@
                         <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> `###Tarea###\nExplica la
                             diferencia entre TCP y UDP.\n###Formato###\nTabla comparativa.`</p>
                     </div>
-                </div>
-                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                </button>
+
+                </button>
+                <button type="button" class="interactive-card p-4 border rounded-lg cursor-pointer text-left w-full"
+                    onclick="toggleAccordion(this)" aria-expanded="false">
                     <h3 class="font-semibold text-lg text-blue-600 mb-2">5. Formato de Salida</h3>
                     <div class="accordion-content">
                         <p class="text-sm text-gray-600">Especifica cómo debe ser presentada la respuesta (JSON, lista,
@@ -347,8 +384,11 @@
                         <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> "Devuelve la configuración de
                             red en formato JSON con las claves 'ip_address', 'subnet_mask' y 'gateway'."</p>
                     </div>
-                </div>
-                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                </button>
+
+                </button>
+                <button type="button" class="interactive-card p-4 border rounded-lg cursor-pointer text-left w-full"
+                    onclick="toggleAccordion(this)" aria-expanded="false">
                     <h3 class="font-semibold text-lg text-blue-600 mb-2">6. Uso de Ejemplos (Few-Shot)</h3>
                     <div class="accordion-content">
                         <p class="text-sm text-gray-600">Incluye uno o más ejemplos de la entrada y la salida deseada
@@ -356,8 +396,11 @@
                         <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> "Entrada: '10101'
                             (binario)\nSalida: '21' (decimal)\nEntrada: '111' (binario)\nSalida:?"</p>
                     </div>
-                </div>
-                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                </button>
+
+                </button>
+                <button type="button" class="interactive-card p-4 border rounded-lg cursor-pointer text-left w-full"
+                    onclick="toggleAccordion(this)" aria-expanded="false">
                     <h3 class="font-semibold text-lg text-blue-600 mb-2">7. Instrucciones Positivas</h3>
                     <div class="accordion-content">
                         <p class="text-sm text-gray-600">Enfócate en lo que la IA *debe* hacer, en lugar de lo que *no
@@ -365,8 +408,11 @@
                         <p class="text-xs text-gray-500 mt-2"><strong>Ejemplo:</strong> "Explica el concepto de 'puntero
                             nulo' en C de forma concisa y precisa."</p>
                     </div>
-                </div>
-                <div class="interactive-card p-4 border rounded-lg cursor-pointer" onclick="toggleAccordion(this)">
+                </button>
+
+                </button>
+                <button type="button" class="interactive-card p-4 border rounded-lg cursor-pointer text-left w-full"
+                    onclick="toggleAccordion(this)" aria-expanded="false">
                     <h3 class="font-semibold text-lg text-blue-600 mb-2">8. Proceso Iterativo</h3>
                     <div class="accordion-content">
                         <p class="text-sm text-gray-600">Refina el prompt basándote en las respuestas obtenidas,
@@ -375,7 +421,7 @@
                             2. Refinamiento: "Explica árboles B para un estudiante de BD, compara con BST, formato
                             viñetas."</p>
                     </div>
-                </div>
+                </button>
             </div>
             <p class="mt-8 text-sm text-gray-600">Haz clic en cada principio para ver una breve descripción y un
                 ejemplo. Estos pilares son la base para comunicarte eficazmente con cualquier modelo de IA.</p>
