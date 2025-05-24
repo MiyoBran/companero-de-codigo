@@ -105,7 +105,8 @@
             <div class="card">
                 <h3 class="text-xl font-bold mb-3 text-[#10B981]">Paso 1: La Aplicación y los Rechazos Automáticos</h3>
                 <p class="text-slate-600 mb-4">Ve a la <a href="https://github.com/settings/education/benefits"
-                        target="_blank" rel="noopener" class="text-blue-600 hover:underline">página de beneficios de GitHub
+                        target="_blank" rel="noopener" class="text-blue-600 hover:underline">página de beneficios de
+                        GitHub
                         Education</a> y comienza tu aplicación. Es muy probable que tus primeros 2 o 3 intentos sean
                     rechazados casi instantáneamente por un bot. **No te preocupes, esto es parte del proceso.**</p>
                 <div class="alert-card alert-warning">
@@ -115,9 +116,10 @@
                         solución para cada una:</p>
                     <ul class="list-disc list-inside space-y-2 mt-2 text-sm text-yellow-700">
                         <li>"Your name... does not appear... in your GitHub billing information." &rarr; **Solución:**
-                            Revisa que tu nombre y apellido en la <a href="https://github.com/settings/billing" rel="noopener"
-                                                            class="font-semibold underline" target="_blank">info de facturación</a> y en tu perfil de GitHub sea
-                                                        idéntico al de tus constancias.</li>
+                            Revisa que tu nombre y apellido en la <a href="https://github.com/settings/billing"
+                                rel="noopener" class="font-semibold underline" target="_blank">info de facturación</a> y
+                            en tu perfil de GitHub sea
+                            idéntico al de tus constancias.</li>
                         <li>"The image... does not appear to contain your school name." &rarr; **Solución:** Asegúrate
                             de que el nombre "Universidad Nacional de la Patagonia San Juan Bosco" esté claramente
                             visible, no solo el logo.</li>
@@ -147,32 +149,44 @@
                 <p class="text-slate-600 mb-4">Si después de 3-4 intentos sigues sin aprobación, es hora de contactar a
                     un humano. Este es el paso que garantiza el éxito.</p>
                 <ol class="list-decimal list-inside space-y-2 text-slate-700">
-                                    <li>Ve a la <a href="https://support.github.com/request" target="_blank" rel="noopener"
-                                            class="text-blue-600 hover:underline">página de soporte de GitHub</a>.</li>
-                                    <li>Baja hasta la sección "Beneficios o programa de GitHub Education" y elige la opción de
-                                        **"Contacto"**.</li>
-                                    <li>Abre un nuevo ticket. Sé amable y explica tu situación claramente. Menciona que eres estudiante
-                                        de la UNPSJB, que la universidad no da email `@edu` y que has intentado varias veces la
-                                        verificación automática sin éxito.</li>
-                                    <li>**Adjunta todos tus documentos** al ticket: la constancia, la historia académica y, si quieres,
-                                        la foto que sacaste.</li>
-                                </ol>
+                    <li>Ve a la <a href="https://support.github.com/request" target="_blank" rel="noopener"
+                            class="text-blue-600 hover:underline">página de soporte de GitHub</a>.</li>
+                    <li>Baja hasta la sección "Beneficios o programa de GitHub Education" y elige la opción de
+                        **"Contacto"**.</li>
+                    <li>Abre un nuevo ticket. Sé amable y explica tu situación claramente. Menciona que eres estudiante
+                        de la UNPSJB, que la universidad no da email `@edu` y que has intentado varias veces la
+                        verificación automática sin éxito.</li>
+                    <li>**Adjunta todos tus documentos** al ticket: la constancia, la historia académica y, si quieres,
+                        la foto que sacaste.</li>
+                </ol>
             </div>
 
             <div class="card">
                 <h3 class="text-xl font-bold mb-3 text-[#10B981]">Pro-Tip: Cómo Traducir tus Documentos con IA</h3>
-                <p class="text-slate-600 mb-4">Para facilitar la revisión, puedes pedirle a una IA como ChatGPT o Gemini
-                    que traduzca tus documentos. Usa un prompt (una instrucción) como este:</p>
-                <div class="code-block text-sm">
-                    <p>Me gustaría me des una versión del siguiente documento, traducida al inglés y con formato
-                        estándar de fechas. Debo respetar en la medida de las posibilidades las siguientes indicaciones:
-                    </p>
-                    <p class="mt-2 pl-4 border-l-2 border-gray-500 italic">"The image you selected does not appear to
-                        contain your school name. Your complete school name must appear in your document... If your
-                        official document is not in English then you may photograph the original next to an English
-                        translation."</p>
-                    <p class="mt-2 pl-4 border-l-2 border-gray-500 italic">"Your document does not appear to include a
-                        date demonstrating current academic affiliation..."</p>
+                <p class="text-slate-600 mb-4">Para facilitar la revisión del soporte de GitHub, es una gran idea
+                    proveer una traducción simple de tus documentos. Puedes usar una IA como ChatGPT o Gemini para
+                    hacerlo de forma rápida y precisa. Utiliza un prompt (instrucción) bien estructurado como este para
+                    obtener los mejores resultados:</p>
+
+                <div class="relative mt-4">
+                    <button id="copy-button"
+                        class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white text-xs font-semibold py-1 px-3 rounded-md transition-colors duration-200">
+                        Copiar
+                    </button>
+
+                    <div class="code-block text-sm">
+                        <pre><code id="prompt-text">Actúa como un traductor profesional especializado en la conversión de documentos académicos del español al inglés para procesos de verificación internacional.
+
+Tu tarea es traducir el siguiente texto, que es una constancia de alumno regular / historia académica, cumpliendo estrictamente con los siguientes requisitos:
+
+1.  **Nombre Completo de la Institución:** El nombre "Universidad Nacional de la Patagonia San Juan Bosco" debe estar escrito de forma completa y explícita en el documento traducido.
+2.  **Formato de Fechas:** Todas las fechas deben convertirse al formato estándar internacional AAAA-MM-DD.
+3.  **Precisión y Formalidad:** La traducción debe ser precisa, manteniendo un tono formal y académico.
+4.  **Contexto Clave:** El propósito de esta traducción es para una verificación de estatus de estudiante en GitHub Education. Por lo tanto, es crucial que el nombre completo del estudiante, el nombre de la universidad y una fecha que demuestre la afiliación académica actual sean perfectamente claros.
+
+El texto a traducir es el siguiente:
+[AQUÍ PEGARÍAS EL TEXTO DE TU DOCUMENTO]</code></pre>
+                    </div>
                 </div>
             </div>
 
@@ -184,10 +198,11 @@
                     <li>La aprobación puede tardar un par de días después de contactar a soporte.</li>
                     <li>Una vez aprobado, los beneficios pueden tardar **hasta 72 horas** en activarse.</li>
                     <li>Podrás ver tus beneficios aquí: <a href="https://github.com/settings/education/benefits"
-                                                target="_blank" rel="noopener" class="text-blue-600 hover:underline">Mis Beneficios de Educación</a>.</li>
-                                        <li>Para canjear **GitHub Copilot Pro gratis**, usa este enlace específico: <a
-                                                href="https://github.com/github-copilot/signup" target="_blank" rel="noopener"
-                                                class="text-blue-600 hover:underline">Activar Copilot Pro</a>.</li>
+                            target="_blank" rel="noopener" class="text-blue-600 hover:underline">Mis Beneficios de
+                            Educación</a>.</li>
+                    <li>Para canjear **GitHub Copilot Pro gratis**, usa este enlace específico: <a
+                            href="https://github.com/github-copilot/signup" target="_blank" rel="noopener"
+                            class="text-blue-600 hover:underline">Activar Copilot Pro</a>.</li>
                 </ul>
             </div>
         </section>
@@ -197,6 +212,33 @@
         </footer>
 
     </main>
+    <script>
+        // Lógica para el botón de copiar
+        const copyButton = document.getElementById('copy-button');
+        const promptTextElement = document.getElementById('prompt-text');
+
+        if (copyButton && promptTextElement) {
+            copyButton.addEventListener('click', () => {
+                const textToCopy = promptTextElement.innerText;
+
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    // Éxito al copiar
+                    copyButton.innerText = '¡Copiado!';
+                    copyButton.classList.add('bg-green-500', 'hover:bg-green-600');
+
+                    // Volver al estado original después de 2 segundos
+                    setTimeout(() => {
+                        copyButton.innerText = 'Copiar';
+                        copyButton.classList.remove('bg-green-500', 'hover:bg-green-600');
+                    }, 2000);
+                }).catch(err => {
+                    // Error al copiar
+                    console.error('Error al copiar el texto: ', err);
+                    copyButton.innerText = 'Error';
+                });
+            });
+        }
+    </script>
 </body>
 
 </html>
