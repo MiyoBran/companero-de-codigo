@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficios para Estudiantes de Informática</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        main {
+            padding: 4rem 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .benefit-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefit-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+            color: #555;
+            transition: color 0.3s ease;
+        }
+
+        .benefit-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .benefit-list li:hover {
+            color: #667eea;
+        }
+
+        .highlight-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .highlight-title {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-text {
+            font-size: 1.2rem;
+            color: #666;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tip-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .tip-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.1);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            text-align: center;
+            color: white;
+            margin-top: 4rem;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-circle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-circle:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-circle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        a:hover {
+            color: #764ba2;
+            text-shadow: 0 1px 3px rgba(102, 126, 234, 0.3);
+        }
+
+        a::after {
+            content: ' ↗';
+            font-size: 0.8em;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        a:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <h1>💻 Beneficios para Estudiantes</h1>
+            <p class="subtitle">Licenciatura en Informática - Recursos Gratuitos y Premium</p>
+            <a href="index.html" class="inline-block mb-8 text-[#FF6B6B] font-semibold hover:underline">&larr; Volver a
+                la
+                Infografía Principal</a>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <span class="benefit-icon">🎓</span>
+                    <h3 class="benefit-title">Paquetes Estudiantiles</h3>
+                    <ul class="benefit-list">
+                        <li><strong><a href="https://education.github.com/pack" target="_blank" rel="noopener">GitHub
+                                    Student Pack</a></strong> - Copilot + Pro gratis</li>
+                        <li><strong><a href="https://www.jetbrains.com/student/" target="_blank"
+                                    rel="noopener">JetBrains</a></strong> - Todos los IDEs profesionales</li>
+                        <li><strong><a href="https://azure.microsoft.com/en-us/free/students/" target="_blank"
+                                    rel="noopener">Microsoft Azure</a></strong> - $100 USD anuales</li>
+                        <li><strong><a href="https://visualstudio.microsoft.com/students/" target="_blank"
+                                    rel="noopener">Visual Studio Professional</a></strong> - Licencia completa</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="benefit-icon">☁️</span>
+                    <h3 class="benefit-title">Servicios en la Nube</h3>
+                    <ul class="benefit-list">
+                        <li><strong><a href="https://aws.amazon.com/education/awseducate/" target="_blank"
+                                    rel="noopener">AWS Educate</a></strong> - Créditos + certificaciones</li>
+                        <li><strong><a href="https://cloud.google.com/edu" target="_blank" rel="noopener">Google
+                                    Cloud</a></strong> - $300 USD para nuevos usuarios</li>
+                        <li><strong><a href="https://www.digitalocean.com/github-students" target="_blank"
+                                    rel="noopener">DigitalOcean</a></strong> - $200 USD por 1 año</li>
+                        <li><strong><a href="https://www.heroku.com/github-students" target="_blank"
+                                    rel="noopener">Heroku</a></strong> - Hosting gratuito para proyectos</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="benefit-icon">🛠️</span>
+                    <h3 class="benefit-title">Software Premium</h3>
+                    <ul class="benefit-list">
+                        <li><strong><a href="https://www.adobe.com/creativecloud/buy/students.html" target="_blank"
+                                    rel="noopener">Adobe Creative Cloud</a></strong> - 60% descuento</li>
+                        <li><strong><a href="https://www.autodesk.com/education/edu-software" target="_blank"
+                                    rel="noopener">Autodesk Suite</a></strong> - Software 3D gratuito</li>
+                        <li><strong><a href="https://www.notion.so/product/notion-for-education" target="_blank"
+                                    rel="noopener">Notion Pro</a></strong> - Plan premium sin costo</li>
+                        <li><strong><a href="https://www.figma.com/education/" target="_blank"
+                                    rel="noopener">Figma</a></strong> - Herramientas de diseño UI/UX</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="benefit-icon">📚</span>
+                    <h3 class="benefit-title">Plataformas de Aprendizaje</h3>
+                    <ul class="benefit-list">
+                        <li><strong><a href="https://www.coursera.org/for-university-and-college-students"
+                                    target="_blank" rel="noopener">Coursera Campus</a></strong> - Cursos universitarios
+                        </li>
+                        <li><strong><a href="https://www.pluralsight.com/offer/2020/free-april-month" target="_blank"
+                                    rel="noopener">Pluralsight</a></strong> - Acceso temporal gratuito</li>
+                        <li><strong><a href="https://www.datacamp.com/github-students" target="_blank"
+                                    rel="noopener">DataCamp</a></strong> - Ciencia de datos y Python</li>
+                        <li><strong><a href="https://www.oreilly.com/library-access/" target="_blank"
+                                    rel="noopener">O'Reilly</a></strong> - Miles de libros técnicos</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="benefit-icon">🏆</span>
+                    <h3 class="benefit-title">Competencias y Eventos</h3>
+                    <ul class="benefit-list">
+                        <li><strong>Google Summer of Code</strong> - $6,000 USD</li>
+                        <li><strong>Microsoft Imagine Cup</strong> - Competencia global</li>
+                        <li><strong>ACM-ICPC</strong> - Programación competitiva</li>
+                        <li><strong>Hackathons MLH</strong> - Eventos y networking</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="benefit-icon">💼</span>
+                    <h3 class="benefit-title">Certificaciones</h3>
+                    <ul class="benefit-list">
+                        <li><strong>AWS Cloud Practitioner</strong> - Certificación básica</li>
+                        <li><strong>Google Cloud Associate</strong> - Nivel profesional</li>
+                        <li><strong>Microsoft Azure Fundamentals</strong> - Gratuito</li>
+                        <li><strong>IEEE/ACM Membership</strong> - Acceso a papers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-section">
+                <h2 class="highlight-title">🎯 Consejos para Maximizar Beneficios</h2>
+                <p class="highlight-text">Estrategias clave para aprovechar al máximo todos estos recursos</p>
+
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-number">1</div>
+                        <h4>Mantén tu correo .edu activo</h4>
+                        <p>La mayoría de beneficios requieren verificación estudiantil continua</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">2</div>
+                        <h4>Renueva anualmente</h4>
+                        <p>Configura recordatorios para renovar tus beneficios cada año</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">3</div>
+                        <h4>Documenta tus proyectos</h4>
+                        <p>Usa GitHub para crear un portfolio sólido y visible</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">4</div>
+                        <h4>Participa en comunidades</h4>
+                        <p>El networking es tan valioso como las herramientas gratuitas</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">5</div>
+                        <h4>Combina recursos</h4>
+                        <p>Integra GitHub + Azure + VS Code para un flujo completo</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">6</div>
+                        <h4>Backup importante</h4>
+                        <p>Siempre mantén respaldos de tus proyectos importantes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>💡 <strong>Importante:</strong> Los beneficios pueden cambiar con el tiempo. Verifica siempre en los
+                sitios oficiales.</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">Recursos recopilados para estudiantes de Licenciatura en
+                Informática-Miyo</p>
+        </div>
+        <p><a href="index.html" class="hover:underline">Volver a la Infografía Principal</a></p>
+    </footer>
+
+    <script>
+        // Animación de entrada para las tarjetas
+        const cards = document.querySelectorAll('.benefit-card');
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // Efecto parallax suave en scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.floating-elements');
+            const speed = scrolled * 0.5;
+
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Efecto hover mejorado para las tarjetas
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function (e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(102, 126, 234, 0.1), rgba(255, 255, 255, 0.95))`;
+            });
+
+            card.addEventListener('mouseleave', function () {
+                card.style.background = 'rgba(255, 255, 255, 0.95)';
+            });
+        });
+    </script>
+</body>
+
+</html>

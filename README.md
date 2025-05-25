@@ -26,7 +26,11 @@ Este repositorio contiene varios elementos clave:
 * **Investigación Completa:** Un enlace al documento de Google Doc con el análisis detallado y las fuentes.
 * **Encuesta de Uso y Conocimiento:** Un formulario de Google Forms para recopilar datos sobre la experiencia de los estudiantes con estas herramientas.
 * **Guía de Inicio Rápido (`instructivo.html`):** Un tutorial práctico sobre cómo instalar y empezar a usar GitHub Copilot en Visual Studio Code.
-* **Guía para GitHub Student Pack (`guia-github-student-pack.html`):** (Próximamente) Un tutorial detallado y basado en experiencia real sobre cómo solicitar y obtener los beneficios de GitHub para estudiantes.
+* **Guía para GitHub Student Pack (`guia-github-student-pack.html`):** Un tutorial detallado y basado en experiencia real sobre cómo solicitar y obtener los beneficios de GitHub para estudiantes.
+* **Guía Interactiva Prompting para estudiantes (`guia_interactiva.html`):** es una guía interactiva diseñada para estudiantes, especialmente de informática. Su objetivo principal es enseñarles sobre "Ingeniería de Prompts".
+* **Tendencias de Uso (`tendencias_estudiantes.html`):** mostrar visualmente datos, comparativas y tendencias relevantes sobre el uso de herramientas de IA por parte de los estudiantes, especialmente de informática.
+* **Página de Beneficios para Estudiantes (`student_benefits_page.html`):** Esta página web está diseñada como una guía completa y visualmente atractiva para estudiantes, especialmente aquellos en el área de Informática o carreras afines. Recopila y presenta una amplia gama de beneficios, recursos gratuitos y descuentos premium disponibles para el sector estudiantil.
+
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -51,7 +55,7 @@ Si deseas explorar el código o ejecutar el proyecto en tu propia máquina:
 
 ## ✍️ Autor
 
-* **[Brandolino_Carlos_Miyen]** - [@MiyoBran](https://github.com/MiyoBran)
+* **Brandolino Carlos Miyen** - [@MiyoBran](https://github.com/MiyoBran)
 
     Estudiante de la Licenciatura en Informática / APU en la Universidad Nacional de la Patagonia San Juan Bosco (UNPSJB), Sede Puerto Madryn.
 
